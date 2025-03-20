@@ -7,6 +7,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/error404', function () {
+    return view('errors.error404');
+})->name('error404');
+
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
