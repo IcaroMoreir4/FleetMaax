@@ -24,25 +24,33 @@ Route::get('/login', function () {
 // ❗ Removido temporariamente para permitir acesso sem login durante o desenvolvimento
 Route::middleware('auth')->group(function () {
 */
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-    Route::get('/motoristas', function () {
-        return view('motoristas.index');
-    })->name('motoristas');
+Route::get('/motoristas', function () {
+    return view('motoristas.index');
+})->name('motoristas');
 
-    Route::get('/caminhoes', function () {
-        return view('caminhoes.index');
-    })->name('caminhoes');
+Route::get('/caminhoes', function () {
+    return view('caminhoes.index');
+})->name('caminhoes');
 
-    Route::get('/motoristas/{id}', function ($id) {
-        return view('motoristas.profile', compact('id'));
-    })->name('motoristas.profile');
+Route::get('/motoristas/{id}', function ($id) {
+    return view('motoristas.profile', compact('id'));
+})->name('motoristas.profile');
 
-    Route::get('/rotas', function () {
-        return view('rotas.index');
-    })->name('rotas');
+Route::get('/rotas', function () {
+    return view('rotas.index');
+})->name('rotas');
+
+Route::get('/home', function () {
+    return view('layouts.index');
+})->name('home');
+
+Route::get('/relatorios', function () {
+    return view('relatorios.index');
+})->name('relatorios');
 /*
 });
 */

@@ -1,69 +1,18 @@
-<aside id="sidebar" class=" absolute top-0 left-0 bottom-0 w-20 bg-yellow-500 flex flex-col items-center justify-items-center">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  @vite('resources/css/app.css')
+  @vite(['resources/js/app.js'])
 
-  <img id="sidebar-logo" class="w-14 py-3" src="{{ asset('assets/images/logoSideBar.svg') }}" alt="">
+</head>
+<body class="bg-slate-400 h-screen flex items-center justify-center">
+  <p class="text-4xl text-white">tste</p>
 
-  <nav class="mt-24">
-    <div class="flex items-center justify-items-center text-3xl text-gray-800 flex-col gap-6">
-      <i id="menu-toggle" class="fas fa-bars text-white cursor-pointer transition-all duration-300 origin-left hover:scale-125 hover:text-gray-500"></i>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-home"></i>
-      </a>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-file-alt"></i>
-      </a>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-truck"></i>
-      </a>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-route"></i>
-      </a>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-folder"></i>
-      </a>
-
-      <a class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500" href="#">
-        <i class="fas fa-user"></i>
-      </a>
-
-    </div>
-  </nav>
-</aside>
-
-<aside class="absolute top-0 left-0 bottom-0 w-48 bg-yellow-500 flex flex-col">
-  <img class="p-3" src="{{ asset('assets/images/logoSideBarClick.png') }}" alt="">
-
-  <nav class="mt-24">
-    <div class="flex justify-items-center text-3xl text-gray-800 flex-col gap-8 p-3">
-      <i class="fas fa-bars text-white cursor-pointer transition-all duration-300 origin-left hover:scale-125 hover:text-gray-500 "></i>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-home"></i>
-        <p class="text-lg">Dashboard</p>
-      </a>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-file-alt"></i>
-        <p class="text-lg">Motorista</p>
-      </a>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-truck"></i>
-        <p class="text-lg">Caminhão</p>
-      </a>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-route"></i>
-        <p class="text-lg">Rotas</p>
-      </a>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-folder"></i>
-        <p class="text-lg">Relatórios</p>
-      </a>
-      <a href="#" class="flex items-center gap-2 transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-gray-500">
-        <i class="fas fa-user"></i>
-        <p class="text-lg">Informações dos Motoristas</p>
-      </a>
-    </div>
-  </nav>
-</aside>
+  <x-confirm-email />
+  
+</body>
+</html>
