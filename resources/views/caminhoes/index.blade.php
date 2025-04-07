@@ -131,7 +131,7 @@
     </div>
   </div>
 
- <!-- Modal - Novo Caminhão -->
+<!-- Modal - Novo Caminhão -->
 <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50">
   <div class="bg-gray-200 mx-6 my-10 w-1/2 h-[85%] p-6 rounded-lg shadow-lg">
     <div class="flex justify-between">
