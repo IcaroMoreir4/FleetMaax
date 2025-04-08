@@ -40,10 +40,6 @@ Route::get('/motoristas/{id}', function ($id) {
     return view('motoristas.profile', compact('id'));
 })->name('motoristas.profile');
 
-Route::get('/rotas', function () {
-    return view('rotas.index');
-})->name('rotas');
-
 Route::get('/home', function () {
     return view('layouts.index');
 })->name('home');
@@ -56,9 +52,17 @@ Route::get('/relatorios/detalhado', function () {
     return view('relatorios.detalhado');
 })->name('relatorios.detalhado');
 
+Route::get('/rotas', function () {
+    return view('rotas.index');
+})->name('rotas');
+
 Route::get('/rotas/detalhada', function () {
     return view('rotas.detalhada');
 })->name('rotas.detalhada');
+
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
 /*
 });
 */
