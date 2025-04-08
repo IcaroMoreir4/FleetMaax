@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: backend
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    environment:
+      - APP_ENV=local
+    depends_on:
+      - mysql_fletmax
+      - redis_fletmax
+
+  mysql_fletmax:
+    image: mysql:8.0
+    container_name: mysql_fletmax
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: fletmax
+      MYSQL_USER: fletmax
+      MYSQL_PASSWORD: fletmax1234
+      MYSQL_ROOT_PASSWORD: fletmax1234
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin_fletmax:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_fletmax
+    restart: unless-stopped
+    depends_on:
+      - mysql_fletmax
+    environment:
+      PMA_HOST: mysql_fletmax
+      MYSQL_ROOT_PASSWORD: fletmax1234
+    ports:
+      - "8083:80"
+
+  nginx_fletmax:
+    image: nginx:latest
+    container_name: nginx_fletmax
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+
+  redis_fletmax:
+    image: redis:latest
+    container_name: redis_fletmax
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+
+volumes:
+  mysql_data:
