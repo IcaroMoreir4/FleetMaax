@@ -15,6 +15,8 @@ services:
     depends_on:
       - mysql_fletmax
       - redis_fletmax
+    ports:
+      - "9000:9000"
 
   mysql_fletmax:
     image: mysql:8.0
