@@ -1,169 +1,103 @@
-# FleetMax
+# FleetMax  
 
-## Introdução
+Um projeto desenvolvido com Laravel, Node.js, Nginx, MySQL e Redis, utilizando Docker para facilitar a configuração e o deploy.  
 
-A gestão de frotas é essencial para empresas que dependem do transporte de mercadorias e serviços. O FleetMax surge como uma solução para centralizar e otimizar a administração de veículos, motoristas e rotas, garantindo eficiência e organização nas operações logísticas.
+## 📌 Tecnologias Utilizadas  
 
-## Problemática
+- **Laravel** v12.7.2
+- **PHP** v8.2.27  
+- **Nginx** v1.27.4-alpine  
+- **MySQL** v8.0  
+- **Redis** latest-alpine  
+- **phpMyAdmin** v5.2.2  
+- **Docker Compose** v3.8  
 
-O gerenciamento manual de frotas pode levar a inconsistências nos dados, alocações inadequadas de veículos e dificuldades no planejamento de rotas. Sem um sistema centralizado, a consulta e a atualização de informações tornam-se morosas e propensas a erros, impactando a eficiência da operação e a tomada de decisões estratégicas.
+## 🚀 Como Rodar o Projeto  
 
-## Solução
+### 🔧 Pré-requisitos  
 
-O FleetMax é uma plataforma web que simplifica a gestão de frotas, permitindo:
+Antes de começar, instale os seguintes programas na sua máquina:  
 
--   Cadastro e administração de motoristas, caminhões e rotas.
--   Associação de motoristas a veículos e rotas específicas.
--   Consulta e gerenciamento eficiente de informações logísticas.
--   Interface intuitiva para facilitar a adoção pelos usuários.
+- [Docker](https://www.docker.com/)
+- [Node.js](https://nodejs.org/) (Recomendado: LTS)
 
-Embora a versão inicial não inclua monitoramento em tempo real ou integração com APIs externas, a plataforma foi projetada para ser escalável e adaptável a futuras necessidades.
+### ▶️ Rodando o Projeto  
 
-## Stacks do Projeto
+1. **Configurar o ambiente**  
+   - Copie e cole o arquivo `.env.example` e renomeie para `.env`.  
+   - Copie e cole o seguinte código dentro do arquivo `.env`:  
 
-Para garantir um desenvolvimento eficiente e estruturado, as seguintes tecnologias foram escolhidas:
+   ```env
 
-### **Gerenciamento de Atividades e Controle de Versão**
+      DB_CONNECTION=mysql
+      DB_HOST=mysql_fletmax
+      DB_PORT=3306
+      DB_DATABASE=fletmax
+      DB_USERNAME=fletmax
+      DB_PASSWORD=fletmax1234
 
--   **Trello**: Aplicação do método Kanban para organização das tarefas.
--   **GitHub**: Controle de versão para colaboração entre desenvolvedores.
+      REDIS_HOST=redis_fletmax
+      REDIS_PASSWORD=null
+      REDIS_PORT=6379
 
-### **Front-end**
+   ```
 
--   **HTML**: Estruturação das páginas da aplicação.
--   **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
+2. **Subir os containers do projeto**  
+   ```bash
+   docker-compose up --build -d
+   ```
 
-### **Back-end**
+3. **Acessar o container do back-end**  
+   ```bash
+   docker exec -it backend bash   
+   ```
 
--   **PHP**: Linguagem principal para o desenvolvimento do servidor.
--   **Laravel**: Framework para estruturação do back-end, suporte a ORM (Eloquent) e criação de APIs.
+4. **Instalar as dependências do Laravel**  
+   ```bash
+   composer install
+   ```
 
-### **Banco de Dados**
+5. **Gerar a chave do projeto Laravel**  
+   ```bash
+   php artisan key:generate
+   ```
 
--   **MySQL**: Armazenamento e gerenciamento dos dados do sistema.
+6. **Criar as tabelas no banco de dados**  
+   ```bash
+   php artisan migrate
+   ```
 
-### **Ferramentas de DevOps**
+7. **Instalar as dependências do front-end**  
+   ```bash
+   npm install
+   ```
+8. **Instalar as dependências do front-end**  
+   ```bash
+   npm run build
+   ```
 
--   **Docker**: Para criação de ambientes isolados e consistentes.
--   **GitHub Actions**: Automação de testes e CI/CD.
--   **NGINX/Apache**: Servidor web para requisições da aplicação.
--   **Monitoramento e Logs** (Futuro): Grafana e Prometheus para análise de desempenho.
+9. **Compilar os assets do front-end**  
+   ```bash
+   npm run dev
+   ```
 
-## Backlog do Projeto
+### 🎯 Acesse o Projeto  
 
-O desenvolvimento do FleetMax está estruturado em épicos e tarefas organizadas por funcionalidades principais:
+- **Front-end:** [http://localhost/](http://localhost/)  
+- **phpMyAdmin:** [http://localhost:8083](http://localhost:8083)
 
-### **Épico 1: Cadastro de Usuários**
+## ➕ Comandos Úteis  
 
--   [ ] Criar tela de login com validação de credenciais.
--   [ ] Implementar autenticação com Laravel.
--   [ ] Criar recuperação de senha via e-mail.
--   [ ] Validação de CNPJ.
-
-### **Épico 2: Cadastro e Gerenciamento de Frotas**
-
--   [ ] Criar banco de dados para caminhões.
--   [ ] Desenvolver formulário de cadastro.
--   [ ] Implementar edição e exclusão de caminhões.
--   [ ] Criar banco de dados para motoristas.
--   [ ] Criar interface de cadastro e gerenciamento de motoristas.
--   [ ] Implementar listagem e filtros de motoristas e caminhões.
-
-### **Épico 3: Gestão de Rotas**
-
--   [ ] Criar banco de dados para rotas.
--   [ ] Desenvolver formulário de cadastro.
--   [ ] Implementar edição e exclusão de rotas.
--   [ ] Criar vínculo entre motoristas, caminhões e rotas.
--   [ ] Criar interface para listagem de rotas.
--   [ ] Implementar filtros de busca.
-
-### **Épico 4: Relatórios e Monitoramento**
-
--   [ ] Criar geração de relatórios em PDF/Excel.
--   [ ] Desenvolver filtros personalizados para relatórios.
--   [ ] Criar dashboard com informações gerais do sistema.
--   [ ] Implementar alertas automáticos para eventos críticos.
-
-Aqui está o README atualizado considerando o uso do Laravel com Tailwind via Vite:
-
----
-
-## 🚀 Como Executar o Projeto
-
-### 📥 1. Clone o repositório
+### 🔄 Limpar o cache e imagens do Docker
 
 ```bash
-git clone https://github.com/IcaroMoreira4/FleetMaax.git
+docker system prune -a
 ```
-
-### 📂 2. Acesse a pasta do projeto
-
+### Subir os containers 
 ```bash
-cd FleetMax
+docker-compose up -d
 ```
-
-### ⚙️ 3. Instale as dependências do Laravel
-
+### Remover containers
 ```bash
-composer install
+docker-compose down
 ```
-
-### 🛠 4. Configure o ambiente
-
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-Edite o arquivo `.env` para configurar a conexão com o banco de dados.
-
-### 🗄️ 5. Configure o banco de dados e execute as migrações
-
-```bash
-php artisan migrate
-```
-
-### 📦 6. Instale as dependências do Node.js
-
-```bash
-npm install
-```
-
-### 🏗️ 7. Inicie o projeto
-
-Abra **dois terminais** e execute os seguintes comandos:
-
-**Terminal 1 (Servidor Laravel)**
-
-```bash
-php artisan serve
-```
-
-**Terminal 2 (Vite para compilar Tailwind e JS)**
-
-```bash
-npm run dev
-```
-
-### 🌐 8. Acesse a aplicação no navegador
-
-[http://127.0.0.1:8000](http://127.0.0.1:8000)
-
----
-
-Caso precise gerar os arquivos CSS e JS para produção, utilize:
-
-```bash
-npm run build
-```
-
-## Contribuição
-
-Para contribuir com o projeto:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para a funcionalidade desejada: `git checkout -b minha-feature`
-3. Faça o commit das suas alterações: `git commit -m 'Adiciona nova funcionalidade'`
-4. Envie suas alterações: `git push origin minha-feature`
-5. Abra um Pull Request.
