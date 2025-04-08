@@ -19,8 +19,36 @@
       <x-header />
 
       <!-- Conteúdo Principal -->
-      <main class="flex-1 p-4">
-        <!-- Conteúdo Aqui -->
+      <main class="flex-1 p-4 grid items-center justify-items-center">
+        <picture class="grid items-center justify-center w-full">
+          <img class="w-[120rem]" src="{{ asset('assets/images/bgDashBoard.png') }}" alt="">
+        </picture>
+
+        <div class="flex justify-center gap-8 mb-16 w-[100rem] mt-8">
+
+          <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
+            <i class="fas fa-file-alt text-4xl text-slate-800 mb-10"></i>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">150</span> Motoristas ativos</p>
+          </div>
+
+          <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
+            <i class="fas fa-route text-4xl text-slate-800 mb-10"></i>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">70</span> Motoristas em
+              rota</p>
+          </div>
+
+          <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
+            <i class="fas fa-truck text-4xl text-slate-800 mb-10"></i>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">98</span> Veículos livres</p>
+          </div>
+
+          <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
+            <i class="fas fa-map-marked-alt text-4xl text-slate-800 mb-10"></i>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">80</span> Motoristas retornando</p>
+          </div>
+
+        </div>
+
       </main>
     </div>
   </div>
