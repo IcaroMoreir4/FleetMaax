@@ -40,6 +40,9 @@ Route::get('/motoristas/{id}', function ($id) {
     return view('motoristas.profile', compact('id'));
 })->name('motoristas.profile');
 
+Route::get('/homepage', function () {
+    return view('layouts.index');
+})->name('homepage');
 
 Route::get('/relatorios', function () {
     return view('relatorios.index');
