@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias([
+            'motorista.status' => App\Http\Middleware\CheckMotoristaStatus::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

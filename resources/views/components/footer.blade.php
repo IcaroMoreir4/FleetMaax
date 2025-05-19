@@ -25,10 +25,10 @@
         <span class="absolute inset-x-0 mx-auto left-0 -bottom-0.5 w-full h-0.5 bg-white"></span>
       </h1>
       <ul class="grid gap-2">
-        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('caminhoes') }}">
+        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('caminhoes.index') }}">
           <li>Caminhões</li>
         </a>
-        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('motoristas') }}">
+        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('motoristas.index') }}">
           <li>Motoristas</li>
         </a>
         <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('rotas') }}">

@@ -22,12 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    git commit -m "feat(model): adicionar model Truck  
 
-    > Criado o model Truck para representar os caminhões no sistema.  
-    > Inclui atributos como placa, modelo e capacidade de carga.  
-    > Essa estrutura permitirá o gerenciamento eficiente da frota."
-    
     /**
      * The attributes that should be hidden for serialization.
      *
