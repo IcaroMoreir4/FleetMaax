@@ -19,4 +19,15 @@ class Motorista extends Model
         'data_admissao',
         'ativo',
     ];
+
+    protected $casts = [
+        'data_nascimento' => 'date',
+        'data_admissao' => 'date',
+        'ativo' => 'boolean',
+    ];
+
+    public function caminhoes()
+    {
+        return $this->hasMany(Caminhao::class);
+    }
 }
