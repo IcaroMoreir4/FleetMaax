@@ -13,7 +13,7 @@
 
   <div class="flex justify-between items-center p-4">
     <img src="{{ asset('assets/images/logoHome.png') }}" alt="">
-    <a class="text-yellow-500 underline" href=""#>Acesse sua conta</a>
+    <a class="text-yellow-500 underline" href="{{ route('login')}}">Acesse sua conta</a>
   </div>
 
   <picture class="grid items-center justify-items-center w-full p-8">

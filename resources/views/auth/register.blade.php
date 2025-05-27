@@ -15,7 +15,8 @@
         <div class="w-full max-w-md rounded-lg">
             <h2 class="text-4xl font-light text-yellow-500 text-center mb-6">Crie sua conta</h2>
 
-            <form id="registerForm">
+            <form method="POST" action="{{ route('register.store') }}">
+                @csrf
                 <div class="mb-4">
                     <label class="block text-sm font-medium mb-1 text-white">CNPJ</label>
                     <div class="flex items-center border border-orange-400 rounded-lg p-2">
@@ -57,7 +58,7 @@
                     <label class="block text-sm font-medium mb-1">Confirme sua senha</label>
                     <div class="flex items-center border border-orange-400 rounded-lg p-2">
                         <i class="fas fa-key mr-2 text-yellow-500"></i>
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="********" class="w-full bg-transparent outline-none placeholder-white/50 text-white">
+                        <input type="password" id="confirmPassword" name="password_confirmation" placeholder="********" class="w-full bg-transparent outline-none placeholder-white/50 text-white">
                         <i class="fas fa-eye ml-2 toggle-password"></i>
                     </div>
                     <p id="confirmPasswordError" class="text-red-500 text-sm hidden">As senhas não coincidem!</p>

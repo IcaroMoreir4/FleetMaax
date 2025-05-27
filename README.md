@@ -1,169 +1,169 @@
 # FleetMax
 
-## Introdução
+## Sobre o Projeto
 
-A gestão de frotas é essencial para empresas que dependem do transporte de mercadorias e serviços. O FleetMax surge como uma solução para centralizar e otimizar a administração de veículos, motoristas e rotas, garantindo eficiência e organização nas operações logísticas.
-
-## Problemática
-
-O gerenciamento manual de frotas pode levar a inconsistências nos dados, alocações inadequadas de veículos e dificuldades no planejamento de rotas. Sem um sistema centralizado, a consulta e a atualização de informações tornam-se morosas e propensas a erros, impactando a eficiência da operação e a tomada de decisões estratégicas.
-
-## Solução
-
-O FleetMax é uma plataforma web que simplifica a gestão de frotas, permitindo:
-
--   Cadastro e administração de motoristas, caminhões e rotas.
--   Associação de motoristas a veículos e rotas específicas.
--   Consulta e gerenciamento eficiente de informações logísticas.
--   Interface intuitiva para facilitar a adoção pelos usuários.
-
-Embora a versão inicial não inclua monitoramento em tempo real ou integração com APIs externas, a plataforma foi projetada para ser escalável e adaptável a futuras necessidades.
-
-## Stacks do Projeto
-
-Para garantir um desenvolvimento eficiente e estruturado, as seguintes tecnologias foram escolhidas:
-
-### **Gerenciamento de Atividades e Controle de Versão**
-
--   **Trello**: Aplicação do método Kanban para organização das tarefas.
--   **GitHub**: Controle de versão para colaboração entre desenvolvedores.
-
-### **Front-end**
-
--   **HTML**: Estruturação das páginas da aplicação.
--   **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
-
-### **Back-end**
-
--   **PHP**: Linguagem principal para o desenvolvimento do servidor.
--   **Laravel**: Framework para estruturação do back-end, suporte a ORM (Eloquent) e criação de APIs.
-
-### **Banco de Dados**
-
--   **MySQL**: Armazenamento e gerenciamento dos dados do sistema.
-
-### **Ferramentas de DevOps**
-
--   **Docker**: Para criação de ambientes isolados e consistentes.
--   **GitHub Actions**: Automação de testes e CI/CD.
--   **NGINX/Apache**: Servidor web para requisições da aplicação.
--   **Monitoramento e Logs** (Futuro): Grafana e Prometheus para análise de desempenho.
-
-## Backlog do Projeto
-
-O desenvolvimento do FleetMax está estruturado em épicos e tarefas organizadas por funcionalidades principais:
-
-### **Épico 1: Cadastro de Usuários**
-
--   [ ] Criar tela de login com validação de credenciais.
--   [ ] Implementar autenticação com Laravel.
--   [ ] Criar recuperação de senha via e-mail.
--   [ ] Validação de CNPJ.
-
-### **Épico 2: Cadastro e Gerenciamento de Frotas**
-
--   [ ] Criar banco de dados para caminhões.
--   [ ] Desenvolver formulário de cadastro.
--   [ ] Implementar edição e exclusão de caminhões.
--   [ ] Criar banco de dados para motoristas.
--   [ ] Criar interface de cadastro e gerenciamento de motoristas.
--   [ ] Implementar listagem e filtros de motoristas e caminhões.
-
-### **Épico 3: Gestão de Rotas**
-
--   [ ] Criar banco de dados para rotas.
--   [ ] Desenvolver formulário de cadastro.
--   [ ] Implementar edição e exclusão de rotas.
--   [ ] Criar vínculo entre motoristas, caminhões e rotas.
--   [ ] Criar interface para listagem de rotas.
--   [ ] Implementar filtros de busca.
-
-### **Épico 4: Relatórios e Monitoramento**
-
--   [ ] Criar geração de relatórios em PDF/Excel.
--   [ ] Desenvolver filtros personalizados para relatórios.
--   [ ] Criar dashboard com informações gerais do sistema.
--   [ ] Implementar alertas automáticos para eventos críticos.
-
-Aqui está o README atualizado considerando o uso do Laravel com Tailwind via Vite:
+FleetMax é uma plataforma web para gestão de frotas, focada em simplificar a administração de veículos, motoristas e rotas para empresas que dependem de transporte. O sistema centraliza informações logísticas, facilitando o cadastro, consulta e gerenciamento, com uma interface intuitiva e escalável para futuras melhorias.
 
 ---
 
-## 🚀 Como Executar o Projeto
+## Tecnologias Utilizadas
 
-### 📥 1. Clone o repositório
-
-```bash
-git clone https://github.com/IcaroMoreira4/FleetMaax.git
-```
-
-### 📂 2. Acesse a pasta do projeto
-
-```bash
-cd FleetMax
-```
-
-### ⚙️ 3. Instale as dependências do Laravel
-
-```bash
-composer install
-```
-
-### 🛠 4. Configure o ambiente
-
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-Edite o arquivo `.env` para configurar a conexão com o banco de dados.
-
-### 🗄️ 5. Configure o banco de dados e execute as migrações
-
-```bash
-php artisan migrate
-```
-
-### 📦 6. Instale as dependências do Node.js
-
-```bash
-npm install
-```
-
-### 🏗️ 7. Inicie o projeto
-
-Abra **dois terminais** e execute os seguintes comandos:
-
-**Terminal 1 (Servidor Laravel)**
-
-```bash
-php artisan serve
-```
-
-**Terminal 2 (Vite para compilar Tailwind e JS)**
-
-```bash
-npm run dev
-```
-
-### 🌐 8. Acesse a aplicação no navegador
-
-[http://127.0.0.1:8000](http://127.0.0.1:8000)
+* **Laravel** (PHP Framework)
+* **Tailwind CSS** (Estilização via Vite)
+* **MySQL** (Banco de Dados)
+* **Redis** (Cache)
+* **Docker** (Ambiente isolado e containerização)
+* Servidor Web: NGINX
 
 ---
 
-Caso precise gerar os arquivos CSS e JS para produção, utilize:
+## Como Rodar o Projeto
 
-```bash
-npm run build
-```
+### Opção 1: Rodar localmente (sem Docker)
 
-## Contribuição
+1. Clone o repositório:
 
-Para contribuir com o projeto:
+   ```bash
+   git clone https://github.com/IcaroMoreira4/FleetMaax.git
+   cd FleetMax
+   ```
 
-1. Faça um fork do repositório.
-2. Crie uma branch para a funcionalidade desejada: `git checkout -b minha-feature`
-3. Faça o commit das suas alterações: `git commit -m 'Adiciona nova funcionalidade'`
-4. Envie suas alterações: `git push origin minha-feature`
-5. Abra um Pull Request.
+2. Instale dependências do Laravel:
+
+   ```bash
+   composer install
+   ```
+
+3. Configure o ambiente:
+
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+   Edite o arquivo `.env` para configurar a conexão com seu banco MySQL local.
+
+4. Execute as migrações para criar as tabelas:
+
+   ```bash
+   php artisan migrate
+   ```
+
+5. Instale as dependências do Node.js:
+
+   ```bash
+   npm install
+   ```
+
+6. Abra dois terminais e execute:
+
+   * Terminal 1 (servidor Laravel):
+
+     ```bash
+     php artisan serve
+     ```
+   * Terminal 2 (Vite para compilar CSS/JS):
+
+     ```bash
+     npm run dev
+     ```
+
+7. Acesse a aplicação em:
+
+   ```
+   http://127.0.0.1:8000
+   ```
+
+---
+
+### Opção 2: Rodar com Docker (recomendado)
+
+1. Instale Docker e Docker Compose.
+
+2. Suba os containers:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Entre no container do backend para instalar dependências PHP e preparar o Laravel:
+
+   ```bash
+   docker exec -it backend bash
+   ```
+
+4. Dentro do container, execute os comandos para instalar as dependências, gerar a chave e migrar o banco:
+
+   ```bash
+   composer install
+   php artisan key:generate
+   php artisan migrate
+   exit
+   ```
+
+5. Fora do container, na sua máquina, instale e compile os assets front-end:
+
+   ```bash
+   npm install
+   npm run build
+   npm run dev
+   ```
+
+6. A aplicação estará disponível em:
+
+   ```
+   http://localhost:8082
+   ```
+
+7. Para acessar o banco via phpMyAdmin:
+
+   ```
+   http://localhost:8085
+   ```
+
+---
+
+## Comandos Úteis
+
+* Para parar os containers:
+
+  ```bash
+  docker-compose down
+  ```
+
+* Para subir os containers novamente:
+
+  ```bash
+  docker-compose up -d
+  ```
+
+* Para limpar cache e imagens Docker:
+
+  ```bash
+  docker system prune -a
+  ```
+
+* **Dica:** Se preferir, pode usar o Docker Desktop para subir, parar e gerenciar containers via interface gráfica.
+
+---
+
+## Contribuindo
+
+1. Faça um fork do projeto.
+2. Crie uma branch para sua feature:
+
+   ```bash
+   git checkout -b minha-feature
+   ```
+3. Faça commit das suas alterações:
+
+   ```bash
+   git commit -m "Descrição da feature"
+   ```
+4. Envie para seu fork:
+
+   ```bash
+   git push origin minha-feature
+   ```
+5. Abra um Pull Request para avaliação.
+
