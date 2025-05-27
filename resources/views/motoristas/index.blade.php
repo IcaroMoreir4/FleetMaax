@@ -145,7 +145,7 @@
           </div>
         </div>
 
- <x-table-browser />
+        <x-table-browser />
 
 
       </main>
@@ -155,53 +155,54 @@
 
 
   <!-- Novo Motorista -->
-  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50 ">
-    <div class="bg-gray-200 mx-6 my-10 w-1/2 h-[85%]">
-      <div class="flex justify-between m-6">
-        <h1 class="text-yellow-500 text-5xl">Novo Motorista</h1>
-        <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-18">
+  <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50">
+    <div class="bg-gray-200 w-full max-w-3xl h-[85vh] max-h-[90vh] mx-4 rounded-lg overflow-auto">
+      <div class="flex justify-between items-center p-6">
+        <h1 class="text-yellow-500 text-3xl sm:text-4xl md:text-5xl">Novo Motorista</h1>
+        <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-14 md:h-18">
       </div>
 
       <div class="py-4">
         <form action="" method="post">
-          <div class="space-y-4 mx-6">
+          <div class="space-y-4 px-6">
             <div>
-              <label for="nome_completo" class="py-2 text-xl">Nome completo</label>
-              <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome completo" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="nome_completo" class="block text-xl mb-1">Nome completo</label>
+              <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome completo" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
             <div>
-              <label for="cpf" class="py-2 text-xl">CPF</label>
-              <input type="text" name="cpf" id="cpf" placeholder="CPF" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="cpf" class="block text-xl mb-1">CPF</label>
+              <input type="text" name="cpf" id="cpf" placeholder="CPF" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
             <div>
-              <label for="cnh" class="py-2 text-xl">CNH</label>
-              <input type="text" name="cnh" id="cnh" placeholder="CNH" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="cnh" class="block text-xl mb-1">CNH</label>
+              <input type="text" name="cnh" id="cnh" placeholder="CNH" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
             <div>
-              <label for="data_nascimento" class="py-2 text-xl">Data de Nascimento</label>
-              <input type="date" name="data_nascimento" id="data_nascimento" placeholder="Data de Nascimento" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="data_nascimento" class="block text-xl mb-1">Data de Nascimento</label>
+              <input type="date" name="data_nascimento" id="data_nascimento" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
             <div>
-              <label for="email" class="py-2 text-xl">E-mail</label>
-              <input type="email" name="email" id="email" placeholder="E-mail" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="email" class="block text-xl mb-1">E-mail</label>
+              <input type="email" name="email" id="email" placeholder="E-mail" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
             <div>
-              <label for="telefone" class="py-2 text-xl">Telefone</label>
-              <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" maxlength="15">
+              <label for="telefone" class="block text-xl mb-1">Telefone</label>
+              <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" maxlength="15">
             </div>
             <div>
-              <label for="data_admissao" class="py-2 text-xl">Data de Admissão</label>
-              <input type="date" name="data_admissao" id="data_admissao" placeholder="Data de Admissão" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+              <label for="data_admissao" class="block text-xl mb-1">Data de Admissão</label>
+              <input type="date" name="data_admissao" id="data_admissao" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             </div>
           </div>
 
-          <div class="flex justify-end py-16 mx-6">
-            <button type="submit" class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">Novo Motorista</button>
+          <div class="flex justify-end p-6">
+            <button type="submit" class="bg-yellow-500 text-xl rounded-full w-full sm:w-60 py-3 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">Novo Motorista</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+
 
 
 

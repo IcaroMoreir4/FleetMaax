@@ -81,50 +81,50 @@
 
 
     <!-- Nova Rota -->
-    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80  hidden z-50">
-        <div class="bg-gray-200 mx-6 my-10 w-1/2 h-3/4">
-            <div class="flex justify-between m-6">
-                <h1 class="text-yellow-500 text-5xl">Nova Rota</h1>
-                <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-18">
+    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50">
+        <div class="bg-gray-200 w-full max-w-3xl h-[80vh] max-h-[90vh] mx-4 p-6 rounded-lg shadow-lg overflow-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-yellow-500 text-3xl sm:text-4xl md:text-5xl">Nova Rota</h1>
+                <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-14 md:h-18">
             </div>
 
-            <div class="py-4">
-                <form action="" method="post">
-                    <div class="space-y-4 mx-6">
-                        <div>
-                            <label for="uf" class="py-2 text-xl">UF</label>
-                            <input type="text" name="uf" id="uf" placeholder="UF" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
-                        <div>
-                            <label for="cidade" class="py-2 text-xl">Cidade</label>
-                            <input type="text" name="cidade" id="cidade" placeholder="Cidade" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
-                        <div>
-                            <label for="bairro" class="py-2 text-xl">Bairro</label>
-                            <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
-                        <div>
-                            <label for="endereco" class="py-2 text-xl">Endereço</label>
-                            <input type="text" name="endereco" id="endereco" placeholder="Endereço" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
-                        <div>
-                            <label for="origem" class="py-2 text-xl">Origem</label>
-                            <input type="text" name="origem" id="origem" placeholder="Origem" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
-                        <div>
-                            <label for="distancia" class=" py-2 text-xl">Distância</label>
-                            <input type="text" name="distancia" id="distancia" placeholder="Distância" class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                        </div>
+            <form action="" method="post">
+                <div class="space-y-4">
+                    <div>
+                        <label for="uf" class="block text-xl mb-1">UF</label>
+                        <input type="text" name="uf" id="uf" placeholder="UF" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     </div>
-
-                    <div class="flex justify-end py-16 mx-6 ">
-                        <button type="submit" class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">Cadastrar Rota</button>
+                    <div>
+                        <label for="cidade" class="block text-xl mb-1">Cidade</label>
+                        <input type="text" name="cidade" id="cidade" placeholder="Cidade" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     </div>
-                </form>
-            </div>
+                    <div>
+                        <label for="bairro" class="block text-xl mb-1">Bairro</label>
+                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                    <div>
+                        <label for="endereco" class="block text-xl mb-1">Endereço</label>
+                        <input type="text" name="endereco" id="endereco" placeholder="Endereço" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                    <div>
+                        <label for="origem" class="block text-xl mb-1">Origem</label>
+                        <input type="text" name="origem" id="origem" placeholder="Origem" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                    <div>
+                        <label for="distancia" class="block text-xl mb-1">Distância</label>
+                        <input type="text" name="distancia" id="distancia" placeholder="Distância" class="px-4 py-2 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                </div>
 
+                <div class="flex justify-end pt-10">
+                    <button type="submit" class="bg-yellow-500 text-xl rounded-full w-full sm:w-60 py-3 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        Cadastrar Rota
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+
 
 
 
