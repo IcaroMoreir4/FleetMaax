@@ -9,9 +9,9 @@
 
     <div class="flex items-center gap-3">
         <div class="bg-gray-300 shadow-md rounded flex items-center flex-wrap gap-3 p-1">
-            <p>CNPJ: 08.377.004/0001-00</p>
-            <p>LYSI TECH</p>
+            <p>CNPJ: {{ Auth::user()->cnpj ?? 'CNPJ não disponível' }}</p>
+            <p>{{ Auth::user()->razaoSocial ?? 'Empresa' }}</p>
         </div>
-        <img class="" src="{{ asset('assets/images/logoHeader.svg') }}" alt="">
+        <img src="{{ asset('assets/images/logoHeader.svg') }}" alt="">
     </div>
 </header>

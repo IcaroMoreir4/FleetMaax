@@ -34,7 +34,7 @@
           </button>
         </div>
 
-        <!-- tabela -->
+        <!-- Tabela de motoristas -->
         <div class="w-full mt-6 overflow-auto rounded-lg">
           <table class="w-full text-left text-white text-xl">
             <thead class="bg-gray-900 font-bold">
@@ -45,12 +45,11 @@
                 <th class="px-4 py-3">CNH</th>
                 <th class="px-4 py-3">Data de Cadastro</th>
                 <th class="px-4 py-3">Status</th>
-                <th class="px-4 py-3">Ações</th>
               </tr>
             </thead>
             <tbody class="bg-gray-100 divide-y divide-gray-400 text-gray-900">
               @foreach($motoristas as $motorista)
-              <tr 
+              <tr
                 onclick="window.location='{{ route('motoristas.show', $motorista->id) }}'"
                 class="cursor-pointer hover:bg-gray-200 transition">
                 <td class="px-4 py-3">{{ $motorista->id }}</td>
@@ -60,24 +59,22 @@
                 <td class="px-4 py-3">{{ $motorista->created_at->format('d/m/Y') }}</td>
                 <td class="px-4 py-3">
                   @if ($motorista->ativo)
-                    <div class="bg-green-600 text-black font-bold rounded w-1/3 text-center">
-                      Ativo
-                    </div>
+                  <div class="bg-green-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                    Ativo
+                  </div>
                   @else
-                    <div class="bg-red-600 text-white font-bold rounded w-1/3 text-center">
-                      Inativo
-                    </div>
+                  <div class="bg-red-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                    Inativo
+                  </div>
                   @endif
-                </td>
-                <td class="px-4 py-3">
-                  <!-- Botões de ação aqui -->
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          <x-table-browser />
+
         </div>
+
       </main>
 
       <!-- Novo Motorista Modal -->
