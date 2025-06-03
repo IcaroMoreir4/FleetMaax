@@ -10,14 +10,12 @@ class Motorista extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nome_completo',
+        'nome',
         'cpf',
         'cnh',
-        'data_nascimento',
-        'email',
         'telefone',
-        'data_admissao',
-        'ativo',
+        'empresa_id',
+        'status'
     ];
 
     protected $casts = [
@@ -25,6 +23,16 @@ class Motorista extends Model
         'data_admissao' => 'date',
         'ativo' => 'boolean',
     ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
+
+    public function routes()
+    {
+        return $this->hasMany(Route::class);
+    }
 
     public function caminhoes()
     {

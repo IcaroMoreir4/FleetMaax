@@ -8,7 +8,7 @@
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('relatorios') }}"><i class="fas fa-file-alt"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('caminhoes.index') }}"><i class="fas fa-truck"></i></a>
-            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('rotas') }}"><i class="fas fa-route"></i></a>
+            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('routes.index') }}"><i class="fas fa-route"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('relatorios.detalhado') }}"><i class="fas fa-folder"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('motoristas.index') }}"><i class="fas fa-user"></i></a>
         </div>
@@ -35,7 +35,7 @@
                 <i class="fas fa-truck"></i>
                 <p class="text-lg">Caminhão</p>
             </a>
-            <a href="{{ route('rotas') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
+            <a href="{{ route('routes.index') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
                 <i class="fas fa-route"></i>
                 <p class="text-lg">Rotas</p>
             </a>

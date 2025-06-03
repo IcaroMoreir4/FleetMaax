@@ -22,4 +22,22 @@ class Empresa extends Authenticatable
         'remember_token',
     ];
 
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function motoristas()
+    {
+        return $this->hasMany(Motorista::class);
+    }
+
+    public function caminhoes()
+    {
+        return $this->hasMany(Caminhao::class);
+    }
+
+    public function routes()
+    {
+        return $this->hasMany(Route::class);
+    }
 }

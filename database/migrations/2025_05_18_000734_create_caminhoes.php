@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('caminhoes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('empresa_id')->constrained()->onDelete('cascade');
             $table->string('implemento');
             $table->string('marca_modelo');
             $table->string('ano');
             $table->string('numero_chassi')->unique();
             $table->string('placa')->unique();
             $table->string('cor');
+            $table->string('status')->default('disponivel');
             $table->unsignedBigInteger('motorista_id')->nullable();
             $table->foreign('motorista_id')->references('id')->on('motoristas')->onDelete('set null');
 

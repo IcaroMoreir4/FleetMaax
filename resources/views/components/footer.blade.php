@@ -31,7 +31,7 @@
         <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('motoristas.index') }}">
           <li>Motoristas</li>
         </a>
-        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('rotas') }}">
+        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('routes.index') }}">
           <li>Rotas</li>
         </a>
       </ul>

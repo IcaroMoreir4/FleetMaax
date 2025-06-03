@@ -12,19 +12,29 @@ class Caminhao extends Model
     protected $table = 'caminhoes';
 
     protected $fillable = [
+        'empresa_id',
         'implemento',
         'marca_modelo',
         'ano',
         'numero_chassi',
         'placa',
         'cor',
-        'nome_motorista',
-        'motorista_id',
+        'status',
+        'motorista_id'
     ];
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
+    }
 
     public function motorista()
     {
         return $this->belongsTo(Motorista::class);
     }
 
+    public function routes()
+    {
+        return $this->hasMany(Route::class);
+    }
 }

@@ -21,7 +21,9 @@
   </picture>
   
   <div class="grid items-start justify-items-center h-[120px]">
-    <button type="button" class="text-slate-800 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-600 shadow-lg shadow-yellow-600/50 dark:shadow-lg dark:shadow-yellow-600/80 font-bold rounded-xl text-lg px-8 py-3.5 text-center me-2 mb-2">Faça seu cadastro aqui</button>
+    <a href="{{ route('register') }}" class="text-slate-800 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-600 shadow-lg shadow-yellow-600/50 dark:shadow-lg dark:shadow-yellow-600/80 font-bold rounded-xl text-lg px-8 py-3.5 text-center me-2 mb-2">
+      Faça seu cadastro aqui
+    </a>
   </div>
 
 <!-- Footer -->
@@ -84,7 +86,7 @@
         <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
           <li>Política de Privacidade</li>
         </a>
-        <a class=" hover:text-slate-900 transition-all duration-300 ease-in-out hover:translate-x-1 text-purple-900 hover:underline" href="#">
+        <a class="hover:text-slate-900 transition-all duration-300 ease-in-out hover:translate-x-1 text-purple-900 hover:underline" href="mailto:suporte@fleetmax.com">
           <li>suporte@fleetmax.com</li>
         </a>
       </ul>

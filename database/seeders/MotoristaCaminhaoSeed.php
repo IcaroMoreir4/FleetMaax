@@ -18,45 +18,41 @@ class MotoristaCaminhaoSeed extends Seeder
         DB::table('motoristas')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;'); // Reativa FK
 
+        // Pega o ID da primeira empresa
+        $empresa_id = DB::table('empresas')->first()->id;
+
         // Insere motoristas primeiro
         DB::table('motoristas')->insert([
             [
                 'id' => 1,
-                'nome_completo' => 'Carlos Silva',
+                'empresa_id' => $empresa_id,
+                'nome' => 'Carlos Silva',
                 'cpf' => '12345678901',
                 'cnh' => 'MG1234567',
-                'data_nascimento' => '1985-03-15',
-                'email' => 'carlos.silva@example.com',
                 'telefone' => '(31) 99999-1234',
-                'data_admissao' => '2010-06-01',
-                'ativo' => true,
+                'status' => 'ativo',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'id' => 2,
-                'nome_completo' => 'Fernanda Costa',
+                'empresa_id' => $empresa_id,
+                'nome' => 'Fernanda Costa',
                 'cpf' => '98765432100',
                 'cnh' => 'SP7654321',
-                'data_nascimento' => '1990-11-25',
-                'email' => 'fernanda.costa@example.com',
                 'telefone' => '(11) 98888-4321',
-                'data_admissao' => '2015-09-10',
-                'ativo' => true,
+                'status' => 'ativo',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
-                        [
+            [
                 'id' => 3,
-                'nome_completo' => 'Julio Pirangueiro Safado',
+                'empresa_id' => $empresa_id,
+                'nome' => 'Julio Pirangueiro Safado',
                 'cpf' => '01010101010',
                 'cnh' => 'PE7654321',
-                'data_nascimento' => '1999-11-25',
-                'email' => 'juliogostoa@gmail.com',
                 'telefone' => '(87) 99253-6170',
-                'data_admissao' => '2015-09-10',
-                'ativo' => false,
+                'status' => 'inativo',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -65,6 +61,7 @@ class MotoristaCaminhaoSeed extends Seeder
         // Depois insere caminhões com motorista_id correto
         DB::table('caminhoes')->insert([
             [
+                'empresa_id' => $empresa_id,
                 'implemento' => 'Carreta Sider',
                 'marca_modelo' => 'Volvo FH 540',
                 'ano' => '2018',
@@ -72,10 +69,12 @@ class MotoristaCaminhaoSeed extends Seeder
                 'placa' => 'ABC1D23',
                 'cor' => 'Branco',
                 'motorista_id' => 1,
+                'status' => 'disponivel',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'empresa_id' => $empresa_id,
                 'implemento' => 'Bitrem',
                 'marca_modelo' => 'Scania R 450',
                 'ano' => '2020',
@@ -83,17 +82,20 @@ class MotoristaCaminhaoSeed extends Seeder
                 'placa' => 'DEF4G56',
                 'cor' => 'Vermelho',
                 'motorista_id' => 2,
+                'status' => 'em_uso',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'empresa_id' => $empresa_id,
                 'implemento' => 'Truck',
                 'marca_modelo' => 'Mercedes-Benz Actros',
                 'ano' => '2015',
                 'numero_chassi' => '9BWZZZ377VT004253',
                 'placa' => 'GHI7J89',
                 'cor' => 'Preto',
-                'motorista_id' => null, // Sem motorista associado
+                'motorista_id' => null,
+                'status' => 'manutencao',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

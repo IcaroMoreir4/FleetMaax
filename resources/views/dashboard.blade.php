@@ -28,23 +28,22 @@
 
           <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
             <i class="fas fa-file-alt text-4xl text-slate-800 mb-10"></i>
-            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">150</span> Motoristas ativos</p>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">{{ $motoristas_ativos }}</span> Motoristas ativos</p>
           </div>
 
           <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
             <i class="fas fa-route text-4xl text-slate-800 mb-10"></i>
-            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">70</span> Motoristas em
-              rota</p>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">{{ $motoristas_em_rota }}</span> Motoristas em rota</p>
           </div>
 
           <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
             <i class="fas fa-truck text-4xl text-slate-800 mb-10"></i>
-            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">98</span> Veículos livres</p>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">{{ $veiculos_livres }}</span> Veículos livres</p>
           </div>
 
           <div class="bg-white p-3 rounded shadow-2xs w-full min-h-full">
             <i class="fas fa-map-marked-alt text-4xl text-slate-800 mb-10"></i>
-            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">80</span> Motoristas retornando</p>
+            <p class="text-slate-800 text-2xl font-bold"><span class="text-yellow-500">{{ $motoristas_retornando }}</span> Motoristas retornando</p>
           </div>
 
         </div>

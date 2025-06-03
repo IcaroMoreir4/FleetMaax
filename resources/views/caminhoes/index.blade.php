@@ -54,6 +54,8 @@
                 <th class="px-4 py-3">Placa</th>
                 <th class="px-4 py-3">Cor</th>
                 <th class="px-4 py-3">Nome Motorista</th>
+                <th class="px-4 py-3">Status</th>
+                <th class="px-4 py-3">Ações</th>
               </tr>
             </thead>
             <tbody class="bg-gray-100 divide-y divide-gray-400 text-gray-900">
@@ -65,7 +67,16 @@
                 <td class="px-4 py-3">{{ $caminhao->numero_chassi }}</td>
                 <td class="px-4 py-3">{{ $caminhao->placa }}</td>
                 <td class="px-4 py-3">{{ $caminhao->cor }}</td>
-                <td class="px-4 py-3">{{ $caminhao->motorista?->nome_completo ?? 'Sem motorista' }}</td>
+                <td class="px-4 py-3">{{ $caminhao->motorista?->nome ?? 'Sem motorista' }}</td>
+                <td class="px-4 py-3">
+                  @if($caminhao->status === 'disponivel')
+                    <span class="bg-green-500 text-green-500 px-2 py-1 rounded">Disponível</span>
+                  @elseif($caminhao->status === 'em_uso')
+                    <span class="bg-blue-500 text-yellow-500 px-2 py-1 rounded">Em Uso</span>
+                  @else
+                    <span class="bg-red-500 text-red-500 px-2 py-1 rounded">Manutenção</span>
+                  @endif
+                </td>
                 <td class="px-4 py-3">
                   <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded"
                     onclick="openEditModal({{ $caminhao }})">
@@ -74,7 +85,6 @@
                 </td>
               </tr>
               @endforeach
-
             </tbody>
           </table>
         </div>
@@ -97,20 +107,48 @@
         <form action="{{ route('caminhoes.store') }}" method="POST">
           @csrf
           <div class="space-y-4">
-            @foreach(['implemento', 'marca_modelo', 'ano', 'numero_chassi', 'placa', 'cor'] as $field)
             <div>
-              <label for="{{ $field }}" class="py-2 text-xl capitalize">{{ ucwords(str_replace('_', ' ', $field)) }}</label>
-              <input type="text" name="{{ $field }}" id="{{ $field }}" placeholder="{{ ucwords(str_replace('_', ' ', $field)) }}"
-                class="px-4 py-1 w-full border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <label for="implemento" class="py-2 text-xl capitalize">Implemento</label>
+              <input type="text" name="implemento" id="implemento" placeholder="Implemento"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
             </div>
-            @endforeach
+
+            <div>
+              <label for="marca_modelo" class="py-2 text-xl capitalize">Marca/Modelo</label>
+              <input type="text" name="marca_modelo" id="marca_modelo" placeholder="Marca/Modelo"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+
+            <div>
+              <label for="ano" class="py-2 text-xl capitalize">Ano</label>
+              <input type="text" name="ano" id="ano" placeholder="Ano"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+
+            <div>
+              <label for="numero_chassi" class="py-2 text-xl capitalize">Número do Chassi</label>
+              <input type="text" name="numero_chassi" id="numero_chassi" placeholder="Número do Chassi"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+
+            <div>
+              <label for="placa" class="py-2 text-xl capitalize">Placa</label>
+              <input type="text" name="placa" id="placa" placeholder="Placa"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
+
+            <div>
+              <label for="cor" class="py-2 text-xl capitalize">Cor</label>
+              <input type="text" name="cor" id="cor" placeholder="Cor"
+                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+            </div>
 
             <div class="form-group">
               <label for="motorista_id" class="py-2 text-xl capitalize">Motorista</label>
-              <select name="motorista_id" id="motorista_id" class="px-4 py-1 w-full border rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <select name="motorista_id" id="motorista_id" class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
                 <option value="">Selecione um motorista</option>
                 @foreach($motoristas as $motorista)
-                <option value="{{ $motorista->id }}">{{ $motorista->nome_completo }}</option>
+                <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
                 @endforeach
               </select>
             </div>
@@ -131,8 +169,6 @@
     <div class="bg-white w-1/2 max-h-[90vh] overflow-y-auto p-6 rounded-lg shadow-lg relative">
       <h2 class="text-2xl font-bold text-yellow-600 mb-4">Editar Caminhão</h2>
 
-
-
       <form id="editForm" method="POST">
         @csrf
         @method('PUT')
@@ -140,35 +176,43 @@
         <div class="space-y-4">
           <div>
             <label for="edit_implemento" class="block font-medium">Implemento</label>
-            <input type="text" name="implemento" id="edit_implemento" class="w-full border px-4 py-2 rounded">
+            <input type="text" name="implemento" id="edit_implemento" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_marca_modelo" class="block font-medium">Marca/Modelo</label>
-            <input type="text" name="marca_modelo" id="edit_marca_modelo" class="w-full border px-4 py-2 rounded">
+            <input type="text" name="marca_modelo" id="edit_marca_modelo" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_ano" class="block font-medium">Ano</label>
-            <input type="number" name="ano" id="edit_ano" class="w-full border px-4 py-2 rounded">
+            <input type="number" name="ano" id="edit_ano" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_numero_chassi" class="block font-medium">Número de Chassi</label>
-            <input type="text" name="numero_chassi" id="edit_numero_chassi" class="w-full border px-4 py-2 rounded">
+            <input type="text" name="numero_chassi" id="edit_numero_chassi" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_placa" class="block font-medium">Placa</label>
-            <input type="text" name="placa" id="edit_placa" class="w-full border px-4 py-2 rounded">
+            <input type="text" name="placa" id="edit_placa" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_cor" class="block font-medium">Cor</label>
-            <input type="text" name="cor" id="edit_cor" class="w-full border px-4 py-2 rounded">
+            <input type="text" name="cor" id="edit_cor" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
           </div>
           <div>
             <label for="edit_motorista_id" class="block font-medium">Motorista</label>
-            <select name="motorista_id" id="edit_motorista_id" class="w-full border px-4 py-2 rounded">
+            <select name="motorista_id" id="edit_motorista_id" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
               <option value="">Selecione um motorista</option>
               @foreach($motoristas as $motorista)
-              <option value="{{ $motorista->id }}">{{ $motorista->nome_completo }}</option>
+              <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
               @endforeach
+            </select>
+          </div>
+          <div>
+            <label for="edit_status" class="block font-medium">Status</label>
+            <select name="status" id="edit_status" class="w-full border px-4 py-2 rounded text-gray-800 bg-white">
+              <option value="disponivel">Disponível</option>
+              <option value="em_uso">Em Uso</option>
+              <option value="manutencao">Manutenção</option>
             </select>
           </div>
         </div>
@@ -189,7 +233,6 @@
             Salvar
           </button>
         </div>
-
       </form>
     </div>
   </div>
@@ -276,6 +319,7 @@
       document.getElementById('edit_placa').value = caminhao.placa;
       document.getElementById('edit_cor').value = caminhao.cor;
       document.getElementById('edit_motorista_id').value = caminhao.motorista_id || '';
+      document.getElementById('edit_status').value = caminhao.status;
       document.getElementById('editModal').classList.remove('hidden');
     }
 

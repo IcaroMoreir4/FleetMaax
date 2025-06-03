@@ -23,3 +23,7 @@ exit
 php artisan session:table
 php artisan migrate
 exit
+mysql --version
+mysql --version
+ecit
+exit

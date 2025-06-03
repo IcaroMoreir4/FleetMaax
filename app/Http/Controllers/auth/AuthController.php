@@ -27,33 +27,43 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($empresa); // autentica o usuário recém-criado
+        Auth::login($empresa, true); // Segundo parâmetro true para "remember me"
+        $request->session()->regenerate();
 
         return redirect()->route('dashboard');
-
     }
 
     public function loginAcount(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
 
-        if (Auth::guard('web')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            $remember = $request->filled('remember');
+
+            if (Auth::attempt($credentials, $remember)) {
+                $request->session()->regenerate();
+                return redirect()->intended('/dashboard');
+            }
+
+            throw ValidationException::withMessages([
+                'email' => ['As credenciais fornecidas estão incorretas.'],
+            ]);
+        } catch (ValidationException $e) {
+            return back()
+                ->withErrors($e->errors())
+                ->withInput($request->except('password'));
         }
-
-        return back()->withErrors([
-            'email' => 'Credenciais inválidas.',
-        ])->withInput();
     }
 
-        public function logout(Request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-        return redirect('/login');
+        
+        return redirect()->route('home');
     }
 }

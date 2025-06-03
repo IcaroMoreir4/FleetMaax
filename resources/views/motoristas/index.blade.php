@@ -43,7 +43,7 @@
                 <th class="px-4 py-3">Nome</th>
                 <th class="px-4 py-3">CPF</th>
                 <th class="px-4 py-3">CNH</th>
-                <th class="px-4 py-3">Data de Cadastro</th>
+                <th class="px-4 py-3">Telefone</th>
                 <th class="px-4 py-3">Status</th>
               </tr>
             </thead>
@@ -53,12 +53,12 @@
                 onclick="window.location='{{ route('motoristas.show', $motorista->id) }}'"
                 class="cursor-pointer hover:bg-gray-200 transition">
                 <td class="px-4 py-3">{{ $motorista->id }}</td>
-                <td class="px-4 py-3">{{ $motorista->nome_completo }}</td>
+                <td class="px-4 py-3">{{ $motorista->nome }}</td>
                 <td class="px-4 py-3">{{ $motorista->cpf }}</td>
                 <td class="px-4 py-3">{{ $motorista->cnh }}</td>
-                <td class="px-4 py-3">{{ $motorista->created_at->format('d/m/Y') }}</td>
+                <td class="px-4 py-3">{{ $motorista->telefone }}</td>
                 <td class="px-4 py-3">
-                  @if ($motorista->ativo)
+                  @if ($motorista->status === 'ativo')
                   <div class="bg-green-600 text-white p-2 font-bold rounded w-2/3 text-center">
                     Ativo
                   </div>
@@ -90,8 +90,8 @@
               @csrf
               <div class="space-y-4">
                 <div>
-                  <label for="nome_completo" class="py-2 text-xl block">Nome completo</label>
-                  <input type="text" name="nome_completo" id="nome_completo" placeholder="Nome completo"
+                  <label for="nome" class="py-2 text-xl block">Nome completo</label>
+                  <input type="text" name="nome" id="nome" placeholder="Nome completo"
                     class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 </div>
 
@@ -108,36 +108,9 @@
                 </div>
 
                 <div>
-                  <label for="data_nascimento" class="py-2 text-xl block">Data de Nascimento</label>
-                  <input type="date" name="data_nascimento" id="data_nascimento" placeholder="Data de Nascimento"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                </div>
-
-                <div>
-                  <label for="email" class="py-2 text-xl block">E-mail</label>
-                  <input type="email" name="email" id="email" placeholder="E-mail"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                </div>
-
-                <div>
                   <label for="telefone" class="py-2 text-xl block">Telefone</label>
                   <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15"
                     class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                </div>
-
-                <div>
-                  <label for="data_admissao" class="py-2 text-xl block">Data de Admissão</label>
-                  <input type="date" name="data_admissao" id="data_admissao" placeholder="Data de Admissão"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                </div>
-
-                <div>
-                  <label for="ativo" class="py-2 text-xl block">Status</label>
-                  <select name="ativo" id="ativo"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                    <option value="1">Ativo</option>
-                    <option value="0">Inativo</option>
-                  </select>
                 </div>
               </div>
 
