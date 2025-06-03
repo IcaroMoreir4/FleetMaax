@@ -6,16 +6,31 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Caminhao;
+use App\Models\Empresa;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 
 class DeploymentTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $empresa;
+
     public function setUp(): void
     {
         parent::setUp();
         Artisan::call('migrate');
+
+        // Criar uma empresa para teste
+        $this->empresa = Empresa::create([
+            'nome' => 'Empresa Teste',
+            'razaoSocial' => 'Empresa Teste LTDA',
+            'email' => 'teste@example.com',
+            'password' => Hash::make('password123'),
+            'cnpj' => '12345678901234',
+            'telefone' => '11999999999',
+            'endereco' => 'Rua Teste, 123'
+        ]);
     }
 
     public function test_database_connection()
@@ -38,12 +53,14 @@ class DeploymentTest extends TestCase
 
     public function test_caminhoes_page_loads()
     {
-        $response = $this->get('/caminhoes');
+        $response = $this->actingAs($this->empresa)->get('/caminhoes');
         $response->assertStatus(200);
     }
 
     public function test_can_create_caminhao()
     {
+        $this->withoutMiddleware();
+        
         $caminhaoData = [
             'implemento' => 'Teste Implemento',
             'marca_modelo' => 'Teste Marca/Modelo',
@@ -54,12 +71,16 @@ class DeploymentTest extends TestCase
             'status' => 'disponivel'
         ];
 
-        $response = $this->post('/caminhoes', $caminhaoData);
-        $response->assertStatus(302); // Redirecionamento após criação
+        $response = $this->actingAs($this->empresa)
+            ->from('/caminhoes')
+            ->post('/caminhoes', $caminhaoData);
+
+        $response->assertRedirect('/caminhoes');
 
         $this->assertDatabaseHas('caminhoes', [
             'implemento' => 'Teste Implemento',
-            'placa' => 'ABC1234'
+            'placa' => 'ABC1234',
+            'empresa_id' => $this->empresa->id
         ]);
     }
 
