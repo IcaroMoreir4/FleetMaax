@@ -30,25 +30,13 @@
                 </h1>
                 <ul class="grid gap-2">
                     <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
-                        <li>DashBoard</li>
-                    </a>
-                    <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
-                        <li>Relatórios</li>
-                    </a>
-                </ul>
-            </div>
-
-            <div class=" p-4">
-                <h1 class="inline-block text-xl font-medium relative mb-4">
-                    Veículos e motorista
-                    <span class="absolute inset-x-0 mx-auto left-0 -bottom-0.5 w-full h-0.5 bg-white"></span>
-                </h1>
-                <ul class="grid gap-2">
-                    <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
-                        <li>Caminhões</li>
+                        <li>Dashboard</li>
                     </a>
                     <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
                         <li>Motoristas</li>
+                    </a>
+                    <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
+                        <li>Caminhões</li>
                     </a>
                     <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="#">
                         <li>Rotas</li>
@@ -56,7 +44,7 @@
                 </ul>
             </div>
 
-            <div class="p-4">
+            <div class=" p-4">
                 <h1 class="inline-block text-xl font-medium relative mb-4">
                     Suporte e contato
                     <span class="absolute inset-x-0 mx-auto left-0 -bottom-0.5 w-full h-0.5 bg-white"></span>

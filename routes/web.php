@@ -32,14 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('motoristas', MotoristaController::class);
     Route::resource('caminhoes', CaminhaoController::class);
     Route::resource('routes', RouteController::class);
-    
-    Route::get('/relatorios', function () {
-        return view('relatorios.index');
-    })->name('relatorios');
-    
-    Route::get('/relatorios/detalhado', function () {
-        return view('relatorios.detalhado');
-    })->name('relatorios.detalhado');
 });
 
 // 🗺️ Rotas

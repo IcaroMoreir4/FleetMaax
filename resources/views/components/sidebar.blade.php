@@ -6,10 +6,8 @@
             <i id="menu-toggle" class="fas fa-bars text-white cursor-pointer hover:scale-125 hover:text-gray-500 transition-all duration-300"></i>
 
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a>
-            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('relatorios') }}"><i class="fas fa-file-alt"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('caminhoes.index') }}"><i class="fas fa-truck"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('routes.index') }}"><i class="fas fa-route"></i></a>
-            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('relatorios.detalhado') }}"><i class="fas fa-folder"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('motoristas.index') }}"><i class="fas fa-user"></i></a>
         </div>
     </nav>
@@ -28,8 +26,8 @@
                 <p class="text-lg">Dashboard</p>
             </a>
             <a href="{{ route('motoristas.index') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
-                <i class="fas fa-file-alt"></i>
-                <p class="text-lg">Motorista</p>
+                <i class="fas fa-user"></i>
+                <p class="text-lg">Motoristas</p>
             </a>
             <a href="{{ route('caminhoes.index') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
                 <i class="fas fa-truck"></i>
@@ -38,14 +36,6 @@
             <a href="{{ route('routes.index') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
                 <i class="fas fa-route"></i>
                 <p class="text-lg">Rotas</p>
-            </a>
-            <a href="{{ route('relatorios') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
-                <i class="fas fa-folder"></i>
-                <p class="text-lg">Relatórios</p>
-            </a>
-            <a href="{{ route('motoristas.index') }}" class="flex items-center gap-2 hover:translate-x-1 hover:text-gray-500">
-                <i class="fas fa-user"></i>
-                <p class="text-lg">Informações dos Motoristas</p>
             </a>
         </div>
     </nav>

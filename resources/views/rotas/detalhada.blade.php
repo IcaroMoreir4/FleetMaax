@@ -27,7 +27,7 @@
           <h1 class="text-white text-5xl">Rota Detalhada</h1>
         </div>
 
-        <!-- Container do Relatório -->
+        <!-- Container Principal -->
         <div class="bg-white p-6 my-10 shadow-lg max-w-full">
           <!-- Formulário de Informações -->
           <div class="grid grid-cols-2 gap-4">
@@ -76,6 +76,9 @@
                 <p>Rua Chiquinha Macedo</p>
                 <p>520km</p>
               </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
   </div>

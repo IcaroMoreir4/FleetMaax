@@ -13,9 +13,6 @@
         <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('dashboard') }}">
           <li>DashBoard</li>
         </a>
-        <a class="transition-all duration-300 ease-in-out hover:translate-x-1 hover:text-purple-900 hover:underline decoration-purple-900" href="{{ route('relatorios') }}">
-          <li>Relatórios</li>
-        </a>
       </ul>
     </div>
 
