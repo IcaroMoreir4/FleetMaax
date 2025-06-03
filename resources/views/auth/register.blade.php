@@ -49,7 +49,9 @@
                     <div class="flex items-center border border-orange-400 rounded-lg p-2">
                         <i class="fas fa-key mr-2 text-white"></i>
                         <input type="password" id="password" name="password" placeholder="********" class="w-full bg-transparent outline-none placeholder-white/50 text-white">
-                        <i class="fas fa-eye cursor-pointer ml-2 toggle-password"></i>
+                        <button type="button" class="toggle-password text-white focus:outline-none">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                     <p id="passwordError" class="text-red-500 text-sm hidden">A senha deve ter pelo menos 6 caracteres!</p>
                 </div>
@@ -57,9 +59,11 @@
                 <div class="mb-8 text-white">
                     <label class="block text-sm font-medium mb-1">Confirme sua senha</label>
                     <div class="flex items-center border border-orange-400 rounded-lg p-2">
-                        <i class="fas fa-key mr-2 text-yellow-500"></i>
+                        <i class="fas fa-key mr-2 text-white"></i>
                         <input type="password" id="confirmPassword" name="password_confirmation" placeholder="********" class="w-full bg-transparent outline-none placeholder-white/50 text-white">
-                        <i class="fas fa-eye ml-2 toggle-password"></i>
+                        <button type="button" class="toggle-password text-white focus:outline-none">
+                            <i class="fas fa-eye"></i>
+                        </button>
                     </div>
                     <p id="confirmPasswordError" class="text-red-500 text-sm hidden">As senhas não coincidem!</p>
                 </div>
@@ -78,5 +82,26 @@
       <img class="w-full h-screen" src="{{ asset('assets/images/banners/bgRegister.png') }}" alt="">
     </picture>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const input = this.parentElement.querySelector('input');
+                    const icon = this.querySelector('i');
+                    
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
