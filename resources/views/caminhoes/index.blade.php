@@ -71,15 +71,15 @@
                 <td class="px-4 py-3">{{ $caminhao->motorista?->nome ?? 'Sem motorista' }}</td>
                 <td class="px-4 py-3">
                   @if($caminhao->status === 'disponivel')
-                    <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                    <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform">
                       Disponível
                     </div>
                   @elseif($caminhao->status === 'em_uso')
-                    <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                    <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform">
                       Em Uso
                     </div>
                   @else
-                    <div class="bg-red-100 border border-red-500 text-red-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                    <div class="bg-red-100 border border-red-500 text-red-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform">
                       Manutenção
                     </div>
                   @endif

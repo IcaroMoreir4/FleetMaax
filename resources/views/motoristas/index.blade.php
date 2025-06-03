@@ -147,7 +147,7 @@
 
       <!-- Modal Editar Motorista -->
       <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50">
-        <div class="bg-gray-200 mx-6 my-10 w-1/2 h-[85%] overflow-auto rounded-lg shadow-lg">
+        <div class="bg-gray-200 mx-6 my-10 w-1/2 overflow-auto rounded-lg shadow-lg">
           <div class="flex justify-between items-center m-6">
             <h1 class="text-yellow-500 text-5xl">Editar Motorista</h1>
             <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-18" />
