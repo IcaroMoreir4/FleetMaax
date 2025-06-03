@@ -32,10 +32,10 @@ class MotoristaController extends Controller
         return redirect()->back()->with('success', 'Motorista cadastrado com sucesso!');
     }
 
-    public function edit($id)
+    public function show($id)
     {
         $motorista = Motorista::where('empresa_id', Auth::id())->findOrFail($id);
-        return view('motoristas.edit', compact('motorista'));
+        return response()->json($motorista);
     }
 
     public function update(Request $request, Motorista $motorista)
@@ -67,11 +67,5 @@ class MotoristaController extends Controller
 
         $motorista->delete();
         return redirect()->route('motoristas.index')->with('success', 'Motorista removido com sucesso!');
-    }
-
-    public function show($id)
-    {
-        $motorista = Motorista::where('empresa_id', Auth::id())->findOrFail($id);
-        return view('motoristas.show', compact('motorista'));
     }
 }

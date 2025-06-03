@@ -62,26 +62,39 @@
                                 <td class="px-4 py-3">{{ $route->caminhao?->placa ?? 'Não atribuído' }}</td>
                                 <td class="px-4 py-3">
                                     @if($route->status === 'pendente')
-                                        <span class="bg-yellow-500 text-yellow-500 px-2 py-1 rounded">Pendente</span>
+                                        <div class="bg-yellow-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                            Pendente
+                                        </div>
                                     @elseif($route->status === 'em_andamento')
-                                        <span class="bg-blue-500 text-blue-500 px-2 py-1 rounded">Em Andamento</span>
+                                        <div class="bg-blue-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                            Em Andamento
+                                        </div>
                                     @elseif($route->status === 'retornando')
-                                        <span class="bg-purple-500 text-purple-500 px-2 py-1 rounded">Retornando</span>
+                                        <div class="bg-purple-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                            Retornando
+                                        </div>
                                     @else
-                                        <span class="bg-green-500 text-green-500 px-2 py-1 rounded">Finalizada</span>
+                                        <div class="bg-green-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                            Finalizada
+                                        </div>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3">
-                                    <button onclick="editarRota({{ $route->id }})" class="text-blue-600 hover:text-blue-800 mr-2">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <form action="{{ route('routes.destroy', $route->id) }}" method="POST" class="inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-800" onclick="return confirm('Tem certeza que deseja excluir esta rota?')">
-                                            <i class="fas fa-trash"></i>
+                                    <div class="flex space-x-2">
+                                        <button onclick="event.stopPropagation(); editarRota({{ $route->id }})"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded transition-all duration-200 transform hover:scale-110 active:scale-95">
+                                            <i class="fas fa-edit"></i>
                                         </button>
-                                    </form>
+                                        <form action="{{ route('routes.destroy', $route->id) }}" method="POST" class="inline"
+                                            onsubmit="return confirm('Tem certeza que deseja excluir esta rota?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="event.stopPropagation()"
+                                                class="bg-red-500 hover:bg-red-600 text-white p-2 rounded transition-all duration-200 transform hover:scale-110 active:scale-95">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -151,9 +164,13 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-end py-16">
+                    <div class="flex justify-end py-16 space-x-4">
+                        <button type="button" onclick="closeModal('novaRotaModal')"
+                            class="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded transition-all duration-200 transform hover:scale-105 hover:bg-red-100 hover:border-red-700 hover:text-red-700 active:scale-95">
+                            Sair
+                        </button>
                         <button type="submit"
-                            class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                            class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 transition-all duration-200 transform hover:scale-105 hover:bg-yellow-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                             Criar Rota
                         </button>
                     </div>
@@ -233,9 +250,13 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-end py-16">
+                    <div class="flex justify-end py-16 space-x-4">
+                        <button type="button" onclick="closeModal('editarRotaModal')"
+                            class="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded transition-all duration-200 transform hover:scale-105 hover:bg-red-100 hover:border-red-700 hover:text-red-700 active:scale-95">
+                            Sair
+                        </button>
                         <button type="submit"
-                            class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                            class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 transition-all duration-200 transform hover:scale-105 hover:bg-yellow-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                             Salvar Alterações
                         </button>
                     </div>

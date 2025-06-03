@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Motorista</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   @vite('resources/css/app.css')
@@ -70,18 +71,35 @@
                 <td class="px-4 py-3">{{ $caminhao->motorista?->nome ?? 'Sem motorista' }}</td>
                 <td class="px-4 py-3">
                   @if($caminhao->status === 'disponivel')
-                    <span class="bg-green-500 text-green-500 px-2 py-1 rounded">Disponível</span>
+                    <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                      Disponível
+                    </div>
                   @elseif($caminhao->status === 'em_uso')
-                    <span class="bg-blue-500 text-yellow-500 px-2 py-1 rounded">Em Uso</span>
+                    <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                      Em Uso
+                    </div>
                   @else
-                    <span class="bg-red-500 text-red-500 px-2 py-1 rounded">Manutenção</span>
+                    <div class="bg-red-100 border border-red-500 text-red-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                      Manutenção
+                    </div>
                   @endif
                 </td>
                 <td class="px-4 py-3">
-                  <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded"
-                    onclick="openEditModal({{ $caminhao }})">
-                    Editar
-                  </button>
+                  <div class="flex space-x-2">
+                    <button onclick="event.stopPropagation(); openEditModal({{ $caminhao }})"
+                      class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg active:scale-95">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <form action="{{ route('caminhoes.destroy', $caminhao->id) }}" method="POST" class="inline"
+                      onsubmit="return confirm('Tem certeza que deseja excluir este caminhão?')">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" onclick="event.stopPropagation()" 
+                        class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg active:scale-95">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </form>
+                  </div>
                 </td>
               </tr>
               @endforeach
@@ -104,43 +122,60 @@
       </div>
 
       <div class="py-4">
-        <form action="{{ route('caminhoes.store') }}" method="POST">
+        <form action="{{ route('caminhoes.store') }}" method="POST" id="formNovoCaminhao">
           @csrf
           <div class="space-y-4">
+            <!-- Mensagens de erro -->
+            <div id="error-messages" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+              <strong class="font-bold">Ops! Alguns campos precisam de atenção:</strong>
+              <ul class="list-disc list-inside mt-2"></ul>
+            </div>
+
             <div>
               <label for="implemento" class="py-2 text-xl capitalize">Implemento</label>
-              <input type="text" name="implemento" id="implemento" placeholder="Implemento"
+              <input type="text" name="implemento" id="implemento" placeholder="Ex: Baú, Carreta, Graneleiro"
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div>
               <label for="marca_modelo" class="py-2 text-xl capitalize">Marca/Modelo</label>
-              <input type="text" name="marca_modelo" id="marca_modelo" placeholder="Marca/Modelo"
+              <input type="text" name="marca_modelo" id="marca_modelo" placeholder="Ex: Volvo FH 460"
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div>
               <label for="ano" class="py-2 text-xl capitalize">Ano</label>
-              <input type="text" name="ano" id="ano" placeholder="Ano"
+              <input type="text" name="ano" id="ano" placeholder="Ex: 2024" maxlength="4" pattern="[0-9]{4}"
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div>
               <label for="numero_chassi" class="py-2 text-xl capitalize">Número do Chassi</label>
-              <input type="text" name="numero_chassi" id="numero_chassi" placeholder="Número do Chassi"
+              <input type="text" name="numero_chassi" id="numero_chassi" placeholder="Ex: 9BWZZZ377VT004251"
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div>
               <label for="placa" class="py-2 text-xl capitalize">Placa</label>
-              <input type="text" name="placa" id="placa" placeholder="Placa"
+              <input type="text" name="placa" id="placa" placeholder="Ex: ABC1D23 ou ABC-1234" 
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <p class="text-sm text-gray-600 mt-1">
+                Formatos aceitos: 
+                - Mercosul (ABC1D23) 
+                - Antigo (ABC-1234)
+              </p>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div>
               <label for="cor" class="py-2 text-xl capitalize">Cor</label>
-              <input type="text" name="cor" id="cor" placeholder="Cor"
+              <input type="text" name="cor" id="cor" placeholder="Ex: Branco, Vermelho, Prata"
                 class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
             <div class="form-group">
@@ -151,10 +186,16 @@
                 <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
                 @endforeach
               </select>
+              <div class="error-message text-red-600 text-sm mt-1 hidden"></div>
             </div>
 
-            <div class="flex justify-end py-6">
-              <button type="submit" class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+            <div class="flex justify-end py-6 space-x-4">
+              <button type="button" onclick="document.getElementById('modal').classList.add('hidden')"
+                class="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded transition-all duration-200 transform hover:scale-105 hover:bg-red-100 hover:border-red-700 hover:text-red-700 active:scale-95">
+                Sair
+              </button>
+              <button type="submit" 
+                class="bg-yellow-500 text-xl rounded-full w-60 py-3 px-4 transition-all duration-200 transform hover:scale-105 hover:bg-yellow-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-yellow-500">
                 Cadastrar Caminhão
               </button>
             </div>
@@ -220,16 +261,13 @@
           <button
             type="button"
             onclick="closeEditModal()"
-            class="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded transition duration-200
-           hover:bg-red-100 hover:border-red-700 hover:text-red-700
-           active:bg-red-200 active:border-red-800">
+            class="text-red-600 border border-red-600 font-semibold px-6 py-2 rounded transition-all duration-200 transform hover:scale-105 hover:bg-red-100 hover:border-red-700 hover:text-red-700 active:scale-95">
             Sair
           </button>
 
           <button
             type="submit"
-            class="bg-yellow-500 text-white font-semibold px-6 py-2 rounded transition duration-200
-           hover:bg-yellow-600 active:bg-yellow-700">
+            class="bg-yellow-500 text-xl rounded-full px-6 py-2 transition-all duration-200 transform hover:scale-105 hover:bg-yellow-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-yellow-500">
             Salvar
           </button>
         </div>
@@ -246,7 +284,7 @@
       const btnFiltrar = document.getElementById('btn-filtrar');
       const menuFiltro = document.getElementById('menu-filtro');
       const editModal = document.getElementById('editModal');
-      const editForm = document.getElementById('editForm');
+      const formNovoCaminhao = document.querySelector('#modal form');
 
       // Abrir modal de novo caminhão
       btnNovoCaminhao.addEventListener('click', () => modal.classList.remove('hidden'));
@@ -271,6 +309,105 @@
         }
       });
 
+      // Formulário de novo caminhão
+      formNovoCaminhao.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Limpa mensagens de erro anteriores
+        document.querySelectorAll('.error-message').forEach(el => {
+          el.textContent = '';
+          el.classList.add('hidden');
+        });
+        document.getElementById('error-messages').classList.add('hidden');
+        
+        const formData = new FormData(this);
+        try {
+          const response = await fetch(this.action, {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+              'Accept': 'application/json',
+            },
+            body: formData
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            const tbody = document.querySelector('tbody');
+            const tr = document.createElement('tr');
+            tr.className = 'hover:bg-gray-200 transition';
+            
+            // Cria a nova linha com os dados do caminhão
+            tr.innerHTML = `
+              <td class="px-4 py-3">${data.caminhao.implemento}</td>
+              <td class="px-4 py-3">${data.caminhao.marca_modelo}</td>
+              <td class="px-4 py-3">${data.caminhao.ano}</td>
+              <td class="px-4 py-3">${data.caminhao.numero_chassi}</td>
+              <td class="px-4 py-3">${data.caminhao.placa}</td>
+              <td class="px-4 py-3">${data.caminhao.cor}</td>
+              <td class="px-4 py-3">${data.caminhao.motorista_id ? data.caminhao.motorista.nome : 'Sem motorista'}</td>
+              <td class="px-4 py-3">
+                <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center transition-all duration-200 transform hover:scale-105">
+                  Disponível
+                </div>
+              </td>
+              <td class="px-4 py-3">
+                <div class="flex space-x-2">
+                  <button onclick="event.stopPropagation(); openEditModal(${JSON.stringify(data.caminhao)})"
+                    class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg active:scale-95">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <form action="/caminhoes/${data.caminhao.id}" method="POST" class="inline"
+                    onsubmit="return confirm('Tem certeza que deseja excluir este caminhão?')">
+                    <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" onclick="event.stopPropagation()" 
+                      class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition-all duration-200 transform hover:scale-110 hover:shadow-lg active:scale-95">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            `;
+            
+            tbody.appendChild(tr);
+            formNovoCaminhao.reset();
+            modal.classList.add('hidden');
+            alert('Caminhão cadastrado com sucesso!');
+          } else {
+            // Mostra erros de validação
+            const errorMessages = document.getElementById('error-messages');
+            const errorList = errorMessages.querySelector('ul');
+            errorList.innerHTML = '';
+            
+            if (data.errors) {
+              errorMessages.classList.remove('hidden');
+              Object.entries(data.errors).forEach(([field, messages]) => {
+                // Mostra erro abaixo do campo
+                const errorDiv = document.querySelector(`#${field}`).nextElementSibling;
+                if (errorDiv && errorDiv.classList.contains('error-message')) {
+                  errorDiv.textContent = messages[0];
+                  errorDiv.classList.remove('hidden');
+                }
+                
+                // Adiciona à lista geral de erros
+                messages.forEach(message => {
+                  const li = document.createElement('li');
+                  li.textContent = message;
+                  errorList.appendChild(li);
+                });
+              });
+            } else {
+              alert(data.error || 'Erro ao cadastrar caminhão. Verifique os campos.');
+            }
+          }
+        } catch (error) {
+          console.error(error);
+          alert('Erro inesperado ao cadastrar caminhão.');
+        }
+      });
+
       // Envio do formulário de edição via AJAX
       editForm.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -278,10 +415,9 @@
         const id = document.getElementById('edit_id').value;
         const formData = new FormData(editForm);
         const token = formData.get('_token');
-        const url = `/caminhoes/${id}`; // certifique-se que sua rota PUT está correta
-
+        
         try {
-          const response = await fetch(url, {
+          const response = await fetch(`/caminhoes/${id}`, {
             method: 'POST',
             headers: {
               'X-CSRF-TOKEN': token,
@@ -293,7 +429,7 @@
           if (response.ok) {
             alert('Caminhão atualizado com sucesso!');
             closeEditModal();
-            location.reload(); // Atualiza a página de caminhões
+            window.location.reload();
           } else {
             const error = await response.json();
             console.error(error);
@@ -303,6 +439,31 @@
           console.error(error);
           alert('Erro inesperado.');
         }
+      });
+
+      // Formatação automática da placa
+      const placaInput = document.getElementById('placa');
+      placaInput.addEventListener('input', function(e) {
+        let valor = e.target.value.toUpperCase();
+        
+        // Remove caracteres não permitidos
+        valor = valor.replace(/[^A-Z0-9-]/g, '');
+        
+        // Se tem hífen, assume formato antigo
+        if (valor.includes('-')) {
+          // Mantém apenas um hífen
+          valor = valor.replace(/-/g, '');
+          if (valor.length > 3) {
+            valor = valor.slice(0, 3) + '-' + valor.slice(3);
+          }
+          // Limita ao tamanho máximo do formato antigo (ABC-1234)
+          valor = valor.slice(0, 8);
+        } else {
+          // Formato Mercosul (ABC1D23)
+          valor = valor.slice(0, 7);
+        }
+        
+        e.target.value = valor;
       });
     });
 
