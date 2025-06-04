@@ -27,9 +27,12 @@ WORKDIR /var/www
 # Copia os arquivos do projeto
 COPY . .
 
+# Remove node_modules e package-lock.json existentes
+RUN rm -rf node_modules package-lock.json
+
 # Instala as dependências do PHP e Node.js, e compila os assets
 RUN composer install --prefer-dist --no-interaction --no-progress \
-    && npm ci \
+    && npm install --no-audit --no-fund \
     && npm run build \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www
