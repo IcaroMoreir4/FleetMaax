@@ -7,10 +7,17 @@ services:
       cp render.nginx.conf /etc/nginx/sites-enabled/default
       service nginx restart
       service php8.2-fpm start
+      php artisan config:cache
+      php artisan route:cache
       php artisan migrate --force
+
     envVars:
       - key: APP_NAME
         value: FleetMaax
+      - key: APP_KEY
+        value: base64:JBL32gZF4EDlxgJDENEXK75GsrLZCnaLSWVy3v9ZQfk=
+      - key: APP_URL
+        value: https://fleetmaax.onrender.com
       - key: APP_ENV
         value: production
       - key: APP_DEBUG

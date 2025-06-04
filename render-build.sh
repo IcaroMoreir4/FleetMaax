@@ -2,21 +2,26 @@
 # exit on error
 set -o errexit
 
-# Install PHP dependencies
+# Instala dependências PHP para produção
 composer install --no-dev --optimize-autoloader
 
-# Clear and cache routes and config
+# Limpa caches antigos
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
 php artisan cache:clear
 
-# Install Node.js dependencies and build assets
+# Compila os assets
 npm install
 npm run build
 
-# Generate application key if not set
+# Gera chave da aplicação
 php artisan key:generate --force
 
-# Run database migrations
-php artisan migrate --force 
+# Reconstrói os caches de config, rotas e views
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Executa as migrations
+php artisan migrate --force
