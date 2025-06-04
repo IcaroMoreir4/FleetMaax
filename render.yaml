@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: fleetmaax
+    env: php
+    buildCommand: ./render-build.sh
+    startCommand: |
+      cp render.nginx.conf /etc/nginx/sites-enabled/default
+      service nginx restart
+      service php8.2-fpm start
+      php artisan migrate --force
+    envVars:
+      - key: APP_NAME
+        value: FleetMaax
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: fleetmaax-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: fleetmaax-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: fleetmaax-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: fleetmaax-db
+          property: username
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: fleetmaax-db
+          property: password 
