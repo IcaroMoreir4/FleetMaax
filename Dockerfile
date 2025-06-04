@@ -13,8 +13,11 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     libpq-dev \
+    postgresql \
+    postgresql-contrib \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql pdo_pgsql bcmath opcache
+    && docker-php-ext-install gd pdo pdo_mysql \
+    && docker-php-ext-install pdo_pgsql
 
 # Instalar o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

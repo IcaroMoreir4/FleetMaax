@@ -13,35 +13,34 @@ services:
     environment:
       - APP_ENV=local
     depends_on:
-      - mysql_fletmax
+      - postgres_fletmax
       - redis_fletmax
     user: "www-data"
 
-  mysql_fletmax:
-    image: mysql:8.0
-    container_name: mysql_fletmax
+  postgres_fletmax:
+    image: postgres:15
+    container_name: postgres_fletmax
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: fletmax
-      MYSQL_USER: fletmax
-      MYSQL_PASSWORD: fletmax1234
-      MYSQL_ROOT_PASSWORD: fletmax1234
+      POSTGRES_DB: fletmax
+      POSTGRES_USER: fletmax
+      POSTGRES_PASSWORD: fletmax1234
     ports:
-      - "3311:3306" 
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
 
-  phpmyadmin_fletmax:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_fletmax
+  pgadmin_fletmax:
+    image: dpage/pgadmin4
+    container_name: pgadmin_fletmax
     restart: unless-stopped
-    depends_on:
-      - mysql_fletmax
     environment:
-      PMA_HOST: mysql_fletmax
-      MYSQL_ROOT_PASSWORD: fletmax1234
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: fletmax1234
     ports:
       - "8085:80"
+    depends_on:
+      - postgres_fletmax
 
   nginx_fletmax:
     image: nginx:latest
@@ -63,4 +62,4 @@ services:
       - "6381:6379"
 
 volumes:
-  mysql_data:
+  postgres_data:
