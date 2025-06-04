@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y \
 
 # Instala Node.js e npm
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt-get install -y nodejs
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
 
 # Instala o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -28,7 +29,7 @@ COPY . .
 
 # Instala as dependências do PHP e Node.js, e compila os assets
 RUN composer install --prefer-dist --no-interaction --no-progress \
-    && npm install \
+    && npm ci \
     && npm run build \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www
