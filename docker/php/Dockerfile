@@ -9,8 +9,9 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     curl \
+    libpq-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql bcmath opcache
+    && docker-php-ext-install gd pdo pdo_mysql bcmath opcache pdo_pgsql
 
 # Instala o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -22,7 +23,7 @@ WORKDIR /var/www
 COPY . .
 
 # Instala as dependências do Laravel
-RUN composer install --prefer-dist --no-interaction --no-progress && chmod -R 777 storage bootstrap/cache
+RUN composer install --prefer-dist --no-interaction --no-progress && chmod -R 775 storage bootstrap/cache
 
 # Configura o opcache
 COPY ./docker/opcache.ini /usr/local/etc/php/conf.d/opcache.ini

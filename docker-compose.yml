@@ -13,8 +13,8 @@ services:
     environment:
       - APP_ENV=local
     depends_on:
-      - postgres_fletmax
       - redis_fletmax
+      - postgres_fletmax
     user: "www-data"
 
   postgres_fletmax:
@@ -22,8 +22,8 @@ services:
     container_name: postgres_fletmax
     restart: unless-stopped
     environment:
-      POSTGRES_DB: fletmax
-      POSTGRES_USER: fletmax
+      POSTGRES_DB: fleetmaax_db
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: fletmax1234
     ports:
       - "5432:5432"
@@ -39,8 +39,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: fletmax1234
     ports:
       - "8085:80"
-    depends_on:
-      - postgres_fletmax
+    # Não depende mais do postgres local
+    # Você pode configurar o acesso ao banco da Render dentro do próprio pgAdmin, com os dados fornecidos
 
   nginx_fletmax:
     image: nginx:latest
@@ -63,3 +63,4 @@ services:
 
 volumes:
   postgres_data:
+  app-data: {}

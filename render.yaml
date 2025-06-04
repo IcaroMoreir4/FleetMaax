@@ -37,4 +37,6 @@ services:
       - key: DB_PASSWORD
         fromDatabase:
           name: fleetmaax-db
-          property: password 
+          property: password
+      - key: PORT
+        value: 80 
