@@ -37,15 +37,18 @@ RUN composer install --no-dev --prefer-dist --no-interaction --no-progress \
     && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache \
-    && chmod -R 777 storage bootstrap/cache
+    && chmod -R 775 storage bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache
 
 # Instalar e construir assets
 RUN npm install && npm run build
 
-# Script de inicialização
-COPY docker/start-render.sh /usr/local/bin/start-render.sh
+# Copiar e configurar o script de inicialização
+COPY start-render.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start-render.sh
 
-EXPOSE 8080
+# Expor a porta 80
+EXPOSE 80
 
+# Comando de inicialização
 CMD ["/usr/local/bin/start-render.sh"] 

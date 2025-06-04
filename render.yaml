@@ -1,16 +1,10 @@
 services:
   - type: web
     name: fleetmaax
-    env: php
-    buildCommand: ./render-build.sh
-    startCommand: |
-      cp render.nginx.conf /etc/nginx/sites-enabled/default
-      service nginx restart
-      service php8.2-fpm start
-      php artisan config:cache
-      php artisan route:cache
-      php artisan migrate --force
-
+    env: docker
+    plan: free
+    buildCommand: docker build -t fleetmaax .
+    startCommand: /usr/local/bin/start-render.sh
     envVars:
       - key: APP_NAME
         value: FleetMaax
