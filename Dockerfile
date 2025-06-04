@@ -13,6 +13,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql bcmath opcache pdo_pgsql
 
+# Instala Node.js e npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
 # Instala o Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -22,8 +26,10 @@ WORKDIR /var/www
 # Copia os arquivos do projeto
 COPY . .
 
-# Instala as dependências do Laravel
+# Instala as dependências do PHP e Node.js, e compila os assets
 RUN composer install --prefer-dist --no-interaction --no-progress \
+    && npm install \
+    && npm run build \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www
 
