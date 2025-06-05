@@ -1,12 +1,28 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./resources/**/*.css",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: [
+                    "Instrument Sans",
+                    "ui-sans-serif",
+                    "system-ui",
+                    "sans-serif",
+                    "Apple Color Emoji",
+                    "Segoe UI Emoji",
+                    "Segoe UI Symbol",
+                    "Noto Color Emoji",
+                ],
+            },
+        },
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/forms'),
+    ],
 };

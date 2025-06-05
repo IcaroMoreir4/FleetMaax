@@ -27,8 +27,8 @@ WORKDIR /var/www
 # Copia os arquivos do projeto
 COPY . .
 
-# Remove node_modules e package-lock.json existentes
-RUN rm -rf node_modules package-lock.json
+# Remove arquivos e diretórios existentes
+RUN rm -rf node_modules package-lock.json public/build
 
 # Instala as dependências do PHP e Node.js, e compila os assets
 RUN composer install --prefer-dist --no-interaction --no-progress \
@@ -37,7 +37,7 @@ RUN composer install --prefer-dist --no-interaction --no-progress \
     && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache \
-    && chmod -R 775 storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache public/build \
     && chown -R www-data:www-data /var/www
 
 # Configura o opcache

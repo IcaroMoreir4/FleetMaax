@@ -1,5 +1,8 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
+import postcssImport from 'postcss-import';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
     plugins: [
@@ -20,6 +23,15 @@ export default defineConfig({
     server: {
         hmr: {
             host: 'localhost',
+        },
+    },
+    css: {
+        postcss: {
+            plugins: [
+                postcssImport,
+                tailwindcss,
+                autoprefixer,
+            ],
         },
     },
 });
