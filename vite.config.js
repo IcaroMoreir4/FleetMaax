@@ -9,6 +9,8 @@ export default defineConfig({
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js"],
             refresh: true,
+            url: process.env.APP_URL || 'http://localhost',
+            forceDomain: true,
         }),
     ],
     build: {
