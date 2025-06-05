@@ -34,6 +34,9 @@ RUN rm -rf node_modules package-lock.json
 RUN composer install --prefer-dist --no-interaction --no-progress \
     && npm install --no-audit --no-fund --legacy-peer-deps \
     && npm run build \
+    && php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www
 

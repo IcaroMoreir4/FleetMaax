@@ -4,7 +4,13 @@
 chown -R www-data:www-data /var/www/storage
 chmod -R 775 /var/www/storage
 
-# Limpa e recria os caches
+# Limpa os caches
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear
+
+# Recria os caches
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
