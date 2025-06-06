@@ -18,6 +18,16 @@ class AuthController extends Controller
             'razaoSocial' => 'required|string|max:255',
             'email' => 'required|email|unique:empresas',
             'password' => 'required|string|min:6|confirmed',
+        ], [
+            'cnpj.required' => 'O campo CNPJ é obrigatório.',
+            'cnpj.unique' => 'Este CNPJ já está em uso.',
+            'razaoSocial.required' => 'O campo razão social é obrigatório.',
+            'email.required' => 'O campo email é obrigatório.',
+            'email.email' => 'Informe um email válido.',
+            'email.unique' => 'Este email já está cadastrado.',
+            'password.required' => 'A senha é obrigatória.',
+            'password.min' => 'A senha deve ter no mínimo 6 caracteres.',
+            'password.confirmed' => 'A confirmação da senha não corresponde.',
         ]);
 
         $empresa = Empresa::create([
@@ -38,7 +48,12 @@ class AuthController extends Controller
         try {
             $credentials = $request->validate([
                 'email' => 'required|email',
-                'password' => 'required',
+                'password' => 'required|min:6',
+            ], [
+                'email.required' => 'O campo email é obrigatório.',
+                'email.email' => 'Informe um email válido.',
+                'password.required' => 'A senha é obrigatória.',
+                'password.min' => 'A senha deve ter no mínimo 6 caracteres.',
             ]);
 
             $remember = $request->filled('remember');

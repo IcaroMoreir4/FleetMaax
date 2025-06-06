@@ -27,3 +27,7 @@ mysql --version
 mysql --version
 ecit
 exit
+composer install
+php artisan key:generate
+php artisan migrate
+exit

@@ -23,7 +23,9 @@
                         <i class="fas fa-file-invoice mr-2 text-white"></i>
                         <input type="text" id="cnpj" name="cnpj" class="w-full bg-transparent outline-none placeholder-white/50 text-white" placeholder="XX.XXX.XXX/XXXX-XX">
                     </div>
-                    <p id="cnpjError" class="text-red-500 text-sm hidden">CNPJ inválido!</p>
+                    @error('cnpj')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -32,7 +34,9 @@
                         <i class="fas fa-user mr-2 text-white"></i>
                         <input type="text" id="razaoSocial" name="razaoSocial" class="w-full bg-transparent outline-none placeholder-white/50 text-white" placeholder="Fulano de fulano">
                     </div>
-                    <p id="razaoError" class="text-red-500 text-sm hidden">Razão Social é obrigatória!</p>
+                    @error('razaoSocial')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4">
@@ -41,7 +45,9 @@
                         <i class="fas fa-envelope mr-2 text-white"></i>
                         <input type="email" id="email" name="email" class="w-full bg-transparent outline-none placeholder-white/50 text-white" placeholder="exemplo@gmail.com">
                     </div>
-                    <p id="emailError" class="text-red-500 text-sm hidden">Email inválido!</p>
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-4 text-white">
@@ -53,7 +59,9 @@
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
-                    <p id="passwordError" class="text-red-500 text-sm hidden">A senha deve ter pelo menos 6 caracteres!</p>
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="mb-8 text-white">
