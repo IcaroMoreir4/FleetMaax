@@ -6,9 +6,9 @@
             <i id="menu-toggle" class="fas fa-bars text-white cursor-pointer hover:scale-125 hover:text-gray-500 transition-all duration-300"></i>
 
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('dashboard') }}"><i class="fas fa-home"></i></a>
+            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('motoristas.index') }}"><i class="fas fa-user"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('caminhoes.index') }}"><i class="fas fa-truck"></i></a>
             <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('routes.index') }}"><i class="fas fa-route"></i></a>
-            <a class="hover:translate-x-1 hover:text-gray-500" href="{{ route('motoristas.index') }}"><i class="fas fa-user"></i></a>
         </div>
     </nav>
 </aside>
