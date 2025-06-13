@@ -175,21 +175,21 @@ class CaminhaoController extends Controller
 
     public function destroy(Caminhao $caminhao)
     {
-        // Verifica se o caminhão pertence à empresa logada
-        if ($caminhao->empresa_id !== Auth::id()) {
-            abort(403);
-        }
-
-        // Verifica se o caminhão está em uso em alguma rota ativa
-        $rotaAtiva = Route::where('caminhao_id', $caminhao->id)
-            ->whereIn('status', ['em_andamento', 'retornando'])
-            ->exists();
-
-        if ($rotaAtiva) {
-            return back()->withErrors(['error' => 'Não é possível excluir um caminhão que está em uso em uma rota ativa.']);
-        }
-
         try {
+            // Verifica se o caminhão pertence à empresa logada
+            if ($caminhao->empresa_id !== Auth::id()) {
+                return back()->withErrors(['error' => 'Você não tem permissão para excluir este caminhão.']);
+            }
+
+            // Verifica se o caminhão está em uso em alguma rota ativa
+            $rotaAtiva = Route::where('caminhao_id', $caminhao->id)
+                ->whereIn('status', ['em_andamento', 'retornando'])
+                ->exists();
+
+            if ($rotaAtiva) {
+                return back()->withErrors(['error' => 'Não é possível excluir um caminhão que está em uso em uma rota ativa.']);
+            }
+
             // Se o caminhão tem um motorista vinculado, remove a vinculação
             if ($caminhao->motorista_id) {
                 $caminhao->motorista()->update(['status' => 'ativo']);
@@ -199,8 +199,9 @@ class CaminhaoController extends Controller
             return redirect()->route('caminhoes.index')
                 ->with('success', 'Caminhão removido com sucesso!');
         } catch (\Exception $e) {
+            \Log::error('Erro ao excluir caminhão: ' . $e->getMessage());
             return back()
-                ->withErrors(['error' => 'Erro ao remover caminhão. ' . $e->getMessage()]);
+                ->withErrors(['error' => 'Erro ao remover caminhão. Por favor, tente novamente.']);
         }
     }
 }
