@@ -95,7 +95,7 @@
 
       <!-- Novo Motorista Modal -->
       <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-700/80 hidden z-50">
-        <div class="bg-gray-200 mx-6 my-10 w-1/2 h-[85%] overflow-auto rounded-lg shadow-lg">
+        <div class="bg-gray-200 mx-6 my-10 w-1/2 overflow-auto rounded-lg shadow-lg">
           <div class="flex justify-between items-center m-6">
             <h1 class="text-yellow-500 text-5xl">Novo Motorista</h1>
             <img src="{{ asset('assets/images/logoModal.png') }}" alt="Logo" class="h-18" />
@@ -108,25 +108,25 @@
                 <div>
                   <label for="nome" class="py-2 text-xl block">Nome completo</label>
                   <input type="text" name="nome" id="nome" placeholder="Nome completo"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                    class="px-4 py-1 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 </div>
 
                 <div>
                   <label for="cpf" class="py-2 text-xl block">CPF</label>
                   <input type="text" name="cpf" id="cpf" placeholder="CPF"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                    class="px-4 py-1 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 </div>
 
                 <div>
                   <label for="cnh" class="py-2 text-xl block">CNH</label>
                   <input type="text" name="cnh" id="cnh" placeholder="CNH"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                    class="px-4 py-1 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 </div>
 
                 <div>
                   <label for="telefone" class="py-2 text-xl block">Telefone</label>
                   <input type="tel" name="telefone" id="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15"
-                    class="px-4 py-1 w-full border rounded-lg text-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                    class="px-4 py-1 w-full border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 </div>
               </div>
 

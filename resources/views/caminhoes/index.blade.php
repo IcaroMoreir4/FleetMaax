@@ -26,17 +26,6 @@
           </div>
 
           <div class="flex space-x-4">
-            <div class="relative">
-              <button id="btn-filtrar" class="bg-yellow-500 hover:bg-yellow-700 text-slate-800 font-bold py-2 px-4 border border-yellow-700 rounded flex items-center">
-                <i class="fas fa-filter mr-2"></i> Filtrar <i class="fas fa-chevron-down ml-2"></i>
-              </button>
-              <div id="menu-filtro" class="absolute hidden bg-gray-700 text-white rounded mt-2 w-48 shadow-lg z-10">
-                @foreach(['Placa', 'Implemento', 'Motorista'] as $filtro)
-                <button class="block w-full text-left px-4 py-2 hover:bg-gray-600" onclick="aplicarFiltro('{{ strtolower($filtro) }}')">{{ $filtro }}</button>
-                @endforeach
-              </div>
-            </div>
-
             <button id="btn-novo-caminhao" class="bg-yellow-500 hover:bg-yellow-700 text-slate-800 font-bold py-2 px-4 border border-yellow-700 rounded">
               Novo Caminhão +
             </button>
@@ -281,8 +270,6 @@
     document.addEventListener("DOMContentLoaded", function() {
       const modal = document.getElementById('modal');
       const btnNovoCaminhao = document.getElementById('btn-novo-caminhao');
-      const btnFiltrar = document.getElementById('btn-filtrar');
-      const menuFiltro = document.getElementById('menu-filtro');
       const editModal = document.getElementById('editModal');
       const formNovoCaminhao = document.querySelector('#modal form');
 
@@ -296,17 +283,6 @@
 
       editModal.addEventListener('click', (e) => {
         if (e.target === editModal) editModal.classList.add('hidden');
-      });
-
-      // Menu filtro
-      btnFiltrar.addEventListener('click', () => {
-        menuFiltro.classList.toggle('hidden');
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!btnFiltrar.contains(e.target) && !menuFiltro.contains(e.target)) {
-          menuFiltro.classList.add('hidden');
-        }
       });
 
       // Formulário de novo caminhão
@@ -466,10 +442,6 @@
         e.target.value = valor;
       });
     });
-
-    function aplicarFiltro(tipo) {
-      alert("Filtro aplicado: " + tipo);
-    }
 
     function openEditModal(caminhao) {
       document.getElementById('edit_id').value = caminhao.id;

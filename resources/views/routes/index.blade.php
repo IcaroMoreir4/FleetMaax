@@ -62,19 +62,19 @@
                                 <td class="px-4 py-3">{{ $route->caminhao?->placa ?? 'Não atribuído' }}</td>
                                 <td class="px-4 py-3">
                                     @if($route->status === 'pendente')
-                                        <div class="bg-yellow-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                        <div class="bg-yellow-100 border border-yellow-500 text-yellow-700 p-2 font-bold rounded w-2/3 text-center">
                                             Pendente
                                         </div>
                                     @elseif($route->status === 'em_andamento')
-                                        <div class="bg-blue-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                        <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center">
                                             Em Andamento
                                         </div>
                                     @elseif($route->status === 'retornando')
-                                        <div class="bg-purple-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                        <div class="bg-purple-100 border border-purple-500 text-purple-700 p-2 font-bold rounded w-2/3 text-center">
                                             Retornando
                                         </div>
                                     @else
-                                        <div class="bg-green-600 text-white p-2 font-bold rounded w-2/3 text-center">
+                                        <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center">
                                             Finalizada
                                         </div>
                                     @endif
@@ -229,7 +229,6 @@
                         <div>
                             <label for="edit_status" class="block text-lg font-semibold text-gray-700 mb-2">Status</label>
                             <x-select name="status" id="edit_status" required>
-                                <option value="pendente">Pendente</option>
                                 <option value="em_andamento">Em Andamento</option>
                                 <option value="retornando">Retornando</option>
                                 <option value="finalizada">Finalizada</option>
