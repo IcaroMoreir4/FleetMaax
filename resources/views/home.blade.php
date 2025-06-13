@@ -11,16 +11,16 @@
 <body class="h-screen bg-slate-800 ">
 
   <div class="flex justify-between items-center p-4">
-    <img src="{{ secure_asset('assets/images/logoHome.png') }}" alt="">
-    <a class="text-yellow-500 underline" href="{{ secure_url(route('login', [], false)) }}">Acesse sua conta</a>
+    <img src="{{ asset('assets/images/logoHome.png') }}" alt="">
+    <a class="text-yellow-500 underline" href="{{ route('login') }}">Acesse sua conta</a>
   </div>
 
   <picture class="grid items-center justify-items-center w-full p-8">
-    <img src="{{ secure_asset('assets/images/bgLandingPage.svg') }}" alt="">
+    <img src="{{ asset('assets/images/bgLandingPage.svg') }}" alt="">
   </picture>
   
   <div class="grid items-start justify-items-center h-[120px]">
-    <a href="{{ secure_url(route('register', [], false)) }}" class="text-slate-800 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-600 shadow-lg shadow-yellow-600/50 dark:shadow-lg dark:shadow-yellow-600/80 font-bold rounded-xl text-lg px-8 py-3.5 text-center me-2 mb-2">
+    <a href="{{ route('register') }}" class="text-slate-800 bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-400 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-600 shadow-lg shadow-yellow-600/50 dark:shadow-lg dark:shadow-yellow-600/80 font-bold rounded-xl text-lg px-8 py-3.5 text-center me-2 mb-2">
       Faça seu cadastro aqui
     </a>
   </div>
