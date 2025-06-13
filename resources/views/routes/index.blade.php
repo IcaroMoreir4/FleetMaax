@@ -61,20 +61,16 @@
                                 <td class="px-4 py-3">{{ $route->motorista?->nome ?? 'Não atribuído' }}</td>
                                 <td class="px-4 py-3">{{ $route->caminhao?->placa ?? 'Não atribuído' }}</td>
                                 <td class="px-4 py-3">
-                                    @if($route->status === 'pendente')
-                                        <div class="bg-yellow-100 border border-yellow-500 text-yellow-700 p-2 font-bold rounded w-2/3 text-center">
-                                            Pendente
-                                        </div>
-                                    @elseif($route->status === 'em_andamento')
-                                        <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center">
+                                    @if($route->status === 'em_andamento')
+                                        <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center">
                                             Em Andamento
                                         </div>
                                     @elseif($route->status === 'retornando')
-                                        <div class="bg-purple-100 border border-purple-500 text-purple-700 p-2 font-bold rounded w-2/3 text-center">
+                                        <div class="bg-yellow-100 border border-yellow-500 text-yellow-700 p-2 font-bold rounded w-2/3 text-center">
                                             Retornando
                                         </div>
-                                    @else
-                                        <div class="bg-green-100 border border-green-500 text-green-700 p-2 font-bold rounded w-2/3 text-center">
+                                    @elseif($route->status === 'finalizada')
+                                        <div class="bg-blue-100 border border-blue-500 text-blue-700 p-2 font-bold rounded w-2/3 text-center">
                                             Finalizada
                                         </div>
                                     @endif
