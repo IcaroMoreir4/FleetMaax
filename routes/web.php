@@ -27,6 +27,7 @@ Route::middleware('guest')->group(function () {
 // 🔒 Rotas protegidas
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/data', [DashboardController::class, 'getData'])->name('dashboard.data');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
     Route::resource('motoristas', MotoristaController::class);

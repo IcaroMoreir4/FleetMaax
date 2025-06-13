@@ -25,7 +25,10 @@ class RouteController extends Controller
             ->get();
             
         $caminhoes = Caminhao::where('empresa_id', $empresa_id)
-            ->where('status', 'disponivel')
+            ->where(function($query) {
+                $query->where('status', 'disponivel')
+                    ->orWhere('status', 'em_uso');
+            })
             ->get();
             
         return view('routes.index', compact('routes', 'motoristas', 'caminhoes'));
@@ -64,6 +67,9 @@ class RouteController extends Controller
             
             // Atualiza o status do caminhão para em_uso
             $caminhao->update(['status' => 'em_uso']);
+            
+            // Atualiza o status do motorista para em_rota
+            $motorista->update(['status' => 'em_rota']);
 
             return redirect()->route('routes.index')
                 ->with('success', 'Rota cadastrada com sucesso!');
@@ -118,10 +124,16 @@ class RouteController extends Controller
             // Se a rota foi finalizada, libera o caminhão
             if ($validated['status'] === 'finalizada' && $route->status !== 'finalizada') {
                 $caminhao->update(['status' => 'disponivel']);
+                $motorista->update(['status' => 'ativo']);
             }
             // Se a rota foi reativada, ocupa o caminhão
             elseif ($validated['status'] !== 'finalizada' && $route->status === 'finalizada') {
                 $caminhao->update(['status' => 'em_uso']);
+                $motorista->update(['status' => 'em_rota']);
+            }
+            // Se o status mudou para em_andamento ou retornando
+            elseif (in_array($validated['status'], ['em_andamento', 'retornando'])) {
+                $motorista->update(['status' => 'em_rota']);
             }
 
             $route->update($validated);
@@ -145,6 +157,7 @@ class RouteController extends Controller
             // Se a rota estava em andamento, libera o caminhão
             if ($route->status !== 'finalizada') {
                 $route->caminhao->update(['status' => 'disponivel']);
+                $route->motorista->update(['status' => 'ativo']);
             }
 
             $route->delete();
