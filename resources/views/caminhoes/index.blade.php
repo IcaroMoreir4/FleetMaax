@@ -19,18 +19,28 @@
       <x-header />
 
       <main class="flex-1 p-4">
-        <div class="flex items-center justify-between p-4 rounded-lg">
+        <div class="flex items-center justify-between bg-gray-900 p-4 rounded-lg">
           <div class="flex items-center space-x-3">
             <span class="w-1 h-12 bg-gradient-to-b from-yellow-500 to-emerald-300"></span>
             <h1 class="text-white text-5xl">Caminhões</h1>
           </div>
 
-          <div class="flex space-x-4">
-            <button id="btn-novo-caminhao" class="bg-yellow-500 hover:bg-yellow-700 text-slate-800 font-bold py-2 px-4 border border-yellow-700 rounded">
-              Novo Caminhão +
-            </button>
-          </div>
+          <button id="btn-novo-caminhao" class="bg-yellow-500 hover:bg-yellow-700 text-slate-800 font-bold py-2 px-4 border border-yellow-700 rounded">
+            Novo Caminhão +
+          </button>
         </div>
+
+        @if(session('error'))
+        <div class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+        @endif
+
+        @if(session('success'))
+        <div class="mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+          <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+        @endif
 
         <!-- Tabela -->
         <div class="w-full mt-6 overflow-auto rounded-lg">

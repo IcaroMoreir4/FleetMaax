@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Caminhao;
 use App\Models\Motorista;
+use App\Models\Route;
 use Illuminate\Container\Attributes\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -179,7 +180,21 @@ class CaminhaoController extends Controller
             abort(403);
         }
 
+        // Verifica se o caminhão está em uso em alguma rota ativa
+        $rotaAtiva = Route::where('caminhao_id', $caminhao->id)
+            ->whereIn('status', ['em_andamento', 'retornando'])
+            ->exists();
+
+        if ($rotaAtiva) {
+            return back()->withErrors(['error' => 'Não é possível excluir um caminhão que está em uso em uma rota ativa.']);
+        }
+
         try {
+            // Se o caminhão tem um motorista vinculado, remove a vinculação
+            if ($caminhao->motorista_id) {
+                $caminhao->motorista()->update(['status' => 'ativo']);
+            }
+
             $caminhao->delete();
             return redirect()->route('caminhoes.index')
                 ->with('success', 'Caminhão removido com sucesso!');
