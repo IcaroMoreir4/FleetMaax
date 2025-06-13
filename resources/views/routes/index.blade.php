@@ -118,49 +118,43 @@
                     @csrf
                     <div class="space-y-4">
                         <div>
-                            <label for="origem" class="py-2 text-xl block">Origem</label>
-                            <input type="text" name="origem" id="origem" placeholder="Cidade/Estado de origem"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="origem" class="block text-lg font-semibold text-gray-700 mb-2">Origem</label>
+                            <x-input type="text" name="origem" id="origem" required />
                         </div>
 
                         <div>
-                            <label for="destino" class="py-2 text-xl block">Destino</label>
-                            <input type="text" name="destino" id="destino" placeholder="Cidade/Estado de destino"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="destino" class="block text-lg font-semibold text-gray-700 mb-2">Destino</label>
+                            <x-input type="text" name="destino" id="destino" required />
                         </div>
 
                         <div>
-                            <label for="data_saida" class="py-2 text-xl block">Data de Saída</label>
-                            <input type="datetime-local" name="data_saida" id="data_saida"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="data_saida" class="block text-lg font-semibold text-gray-700 mb-2">Data de Saída</label>
+                            <x-input type="datetime-local" name="data_saida" id="data_saida" required />
                         </div>
 
                         <div>
-                            <label for="data_chegada" class="py-2 text-xl block">Data de Chegada</label>
-                            <input type="datetime-local" name="data_chegada" id="data_chegada"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="data_chegada" class="block text-lg font-semibold text-gray-700 mb-2">Data de Chegada</label>
+                            <x-input type="datetime-local" name="data_chegada" id="data_chegada" required />
                         </div>
 
                         <div>
-                            <label for="motorista_id" class="py-2 text-xl block">Motorista</label>
-                            <select name="motorista_id" id="motorista_id"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+                            <label for="motorista_id" class="block text-lg font-semibold text-gray-700 mb-2">Motorista</label>
+                            <x-select name="motorista_id" id="motorista_id" required>
                                 <option value="">Selecione um motorista</option>
                                 @foreach($motoristas as $motorista)
                                 <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div>
-                            <label for="caminhao_id" class="py-2 text-xl block">Caminhão</label>
-                            <select name="caminhao_id" id="caminhao_id"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+                            <label for="caminhao_id" class="block text-lg font-semibold text-gray-700 mb-2">Caminhão</label>
+                            <x-select name="caminhao_id" id="caminhao_id" required>
                                 <option value="">Selecione um caminhão</option>
                                 @foreach($caminhoes as $caminhao)
                                 <option value="{{ $caminhao->id }}">{{ $caminhao->placa }} - {{ $caminhao->marca_modelo }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
                     </div>
 
@@ -193,60 +187,53 @@
                     @method('PUT')
                     <div class="space-y-4">
                         <div>
-                            <label for="edit_origem" class="py-2 text-xl block">Origem</label>
-                            <input type="text" name="origem" id="edit_origem" placeholder="Cidade/Estado de origem"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="edit_origem" class="block text-lg font-semibold text-gray-700 mb-2">Origem</label>
+                            <x-input type="text" name="origem" id="edit_origem" required />
                         </div>
 
                         <div>
-                            <label for="edit_destino" class="py-2 text-xl block">Destino</label>
-                            <input type="text" name="destino" id="edit_destino" placeholder="Cidade/Estado de destino"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="edit_destino" class="block text-lg font-semibold text-gray-700 mb-2">Destino</label>
+                            <x-input type="text" name="destino" id="edit_destino" required />
                         </div>
 
                         <div>
-                            <label for="edit_data_saida" class="py-2 text-xl block">Data de Saída</label>
-                            <input type="datetime-local" name="data_saida" id="edit_data_saida"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="edit_data_saida" class="block text-lg font-semibold text-gray-700 mb-2">Data de Saída</label>
+                            <x-input type="datetime-local" name="data_saida" id="edit_data_saida" required />
                         </div>
 
                         <div>
-                            <label for="edit_data_chegada" class="py-2 text-xl block">Data de Chegada</label>
-                            <input type="datetime-local" name="data_chegada" id="edit_data_chegada"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required />
+                            <label for="edit_data_chegada" class="block text-lg font-semibold text-gray-700 mb-2">Data de Chegada</label>
+                            <x-input type="datetime-local" name="data_chegada" id="edit_data_chegada" required />
                         </div>
 
                         <div>
-                            <label for="edit_motorista_id" class="py-2 text-xl block">Motorista</label>
-                            <select name="motorista_id" id="edit_motorista_id"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+                            <label for="edit_motorista_id" class="block text-lg font-semibold text-gray-700 mb-2">Motorista</label>
+                            <x-select name="motorista_id" id="edit_motorista_id" required>
                                 <option value="">Selecione um motorista</option>
                                 @foreach($motoristas as $motorista)
                                 <option value="{{ $motorista->id }}">{{ $motorista->nome }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div>
-                            <label for="edit_caminhao_id" class="py-2 text-xl block">Caminhão</label>
-                            <select name="caminhao_id" id="edit_caminhao_id"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+                            <label for="edit_caminhao_id" class="block text-lg font-semibold text-gray-700 mb-2">Caminhão</label>
+                            <x-select name="caminhao_id" id="edit_caminhao_id" required>
                                 <option value="">Selecione um caminhão</option>
                                 @foreach($caminhoes as $caminhao)
                                 <option value="{{ $caminhao->id }}">{{ $caminhao->placa }} - {{ $caminhao->marca_modelo }}</option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div>
-                            <label for="edit_status" class="py-2 text-xl block">Status</label>
-                            <select name="status" id="edit_status"
-                                class="px-4 py-1 w-full border rounded-lg text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+                            <label for="edit_status" class="block text-lg font-semibold text-gray-700 mb-2">Status</label>
+                            <x-select name="status" id="edit_status" required>
                                 <option value="pendente">Pendente</option>
                                 <option value="em_andamento">Em Andamento</option>
                                 <option value="retornando">Retornando</option>
                                 <option value="finalizada">Finalizada</option>
-                            </select>
+                            </x-select>
                         </div>
                     </div>
 

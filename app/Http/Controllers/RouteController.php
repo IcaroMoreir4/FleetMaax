@@ -59,8 +59,8 @@ class RouteController extends Controller
             return back()->withErrors(['error' => 'Motorista ou caminhão inválido.']);
         }
 
-        // Define o status inicial como pendente
-        $validated['status'] = 'pendente';
+        // Define o status inicial como em_andamento
+        $validated['status'] = 'em_andamento';
 
         try {
             Route::create($validated);
